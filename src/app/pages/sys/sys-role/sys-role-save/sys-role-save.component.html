@@ -1,0 +1,44 @@
+<div class="flex flex-align-c flex-justify g-9 margin-a margin-t20">
+    <span class="font-xxxl">{{title}}</span>
+    <div class="flex">
+        <button class="but margin-r20 but-mm" (click)="dataTableService.sidebarClose()">取消</button>
+        <button *ngIf="desc!='detail'" class="but but-yellow but-mm" [disabled]="formModel.invalid||!dataTableService.saveButton" (click)="dataTableService.save(formModel.value,desc)">确定
+    </button>
+    </div>
+</div>
+
+<div class="panel-cont margin-t10">
+    <form [formGroup]="formModel" class="relative">
+        <div *ngIf="desc=='detail'" class="sidebar-mask"></div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-4-5">
+                <p class="font-gray font-left margin-b10">角色名称
+                    <span *ngIf="formModel.hasError('required',['name'])" class="font-strong font-tip">*必填项</span>
+                </p>
+                <input type="text" class="text-in g-10" formControlName="name" [readonly]="desc==dataTableService.commonEnum.descEnum.UPDATE.value" [class.has-error]="!formModel.controls['name'].valid&&formModel.controls['name'].touched" placeholder="输入角色名称" maxlength="10"
+                />
+            </div>
+            <div class="g-4-5">
+                <p class="font-gray font-left margin-b10">状态
+                    <span *ngIf="formModel.hasError('required',['status'])" class="font-strong font-tip">*必填项</span>
+                </p>
+                <ui-selectbutton class="flex flex-center g-10" [styleClass]="'tab but-shad flex flex-center g-10'" formControlName="status" [model]="dataTableService.commonEnum.statusEnum.INPUTDATAS"></ui-selectbutton>
+            </div>
+        </div>
+        <div class="flex g-9 textarea margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">角色描述</p>
+                <textarea class="g-10 text-in" [rows]="3" formControlName="description" maxlength="120"></textarea>
+            </div>
+        </div>
+        <div class="flex g-9 textarea margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10 relative">
+                <p class="font-gray font-left margin-b10">权限</p>
+                <input type="text" class="text-in g-10" placeholder="搜索资源" (keyup)="dataTreeService.keyUpSearch($event)">
+                <nz-tree [ngModelNodes]="nodes" (nzCheckBoxChange)="treeCheck($event)" [nzCheckable]="true" [nzMultiple]="true" [nzDefaultExpandAll]="true" [nzInitCheckStrictly]="true" [nzCheckStrictlyChild]="true" [nzDefaultExpandedKeys]="dataTreeService.expandKeysDefault"
+                    [nzDefaultCheckedKeys]="dataTreeService.checkedKeysDefault" [nzDefaultSelectedKeys]="dataTreeService.selectedKeysDefault" [nzSearchValue]="dataTreeService.searchValue" [nzDefaultExpandAll]="dataTreeService.expandDefault">
+                </nz-tree>
+            </div>
+        </div>
+    </form>
+</div>

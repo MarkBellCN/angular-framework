@@ -1,0 +1,27 @@
+<div class='bg-blues'>
+  <form class="login-box">
+    <div class="eff"></div>
+    <h1>Hello,<p>欢迎登录安检信息管理系统</p></h1>
+    <i class="userIcon"></i>
+    <i class="passwordIcon"></i>
+    <input enterSearch type="text" maxlength="30" [(ngModel)]="user.username" name="username" placeholder="输入用户名"/>
+    <input enterSearch [type]="type" maxlength="18" [(ngModel)]="user.password" name="password" placeholder="输入密码"/>
+    <input enterSearchEvent (enterSearch)="login()" type="submit" (click)="login()" value="登录"/>
+    <i id="eye" (click)="visible()" [ngClass]="isVisible?'blue':''">可见</i>
+    <div class="copyright">&copy;2017 西安悦泰科技有限责任公司版权所有</div>
+  </form>
+  <div class="waveWrapper waveAnimation">
+    <div class="login_mask" *ngIf="submitted">
+      <div class="loading_box">
+        <nz-spin [nzSize]="'large'"></nz-spin>
+      </div>
+    </div>
+    <div class="waveWrapperInner bgMiddle">
+      <div class="wave waveMiddle"></div>
+    </div>
+    <div class="waveWrapperInner bgBottom">
+      <div class="wave waveBottom"></div>
+    </div>
+  </div>
+</div>
+

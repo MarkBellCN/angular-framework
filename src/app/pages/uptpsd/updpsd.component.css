@@ -1,0 +1,32 @@
+/*修改密码*/
+
+.alert-box {
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 45px rgba(0, 0, 0, .2);
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #fff;
+    background-image: linear-gradient(to bottom, #dde3e8 0, #fff 64px) !important;
+    /* border-top: 2px solid #68C5CF !important; */
+}
+
+.alert-box .alert {
+    padding-top: 16px;
+    border-radius: 6px 6px 0 0;
+}
+
+.mask-edit-password {
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .6);
+}

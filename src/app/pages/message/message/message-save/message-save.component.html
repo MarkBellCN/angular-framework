@@ -1,0 +1,39 @@
+<div class="c-message-new" *ngIf="showSendMessage">
+    <form [formGroup]="formModel" class="relative">
+        <div class="flex flex-justify">
+            <div class="flex-left">
+                <div class="mess-icon margin-r10">
+                    对象
+                </div>
+                <nz-select class="margin-t5" style="width: 400px;" [nzMode]="'multiple'" formControlName="receiveips" [(ngModel)]="currReceiveips" [nzPlaceHolder]="'选择发送对象'" [nzNotFoundContent]="'无法找到'">
+                    <nz-option *ngFor="let option of messageService.allWorkSpace" [nzLabel]="option.label" [nzValue]="option.value" [nzDisabled]="option.disabled">
+                    </nz-option>
+                </nz-select>
+            </div>
+            <div class="flex flex-right">
+                <button class="but margin-r10 but-mm" (click)="closeSendMessage()">取消</button>
+                <button class="but but-cyan but-mm border-n" [disabled]="formModel.invalid||!messageService.saveButton" (click)="sendMessage()">发送</button>
+            </div>
+        </div>
+        <div class="panel-cont margin-t10">
+            <div class="relative">
+                <div class="flex g-10 margin-a margin-t30 flex-align-c flex-justify">
+                    <div class="g-10">
+                        <p class="font-gray font-left margin-b10">输入标题
+                            <span *ngIf="formModel.hasError('required',['title'])" class="font-strong font-tip">*必填项</span>
+                        </p>
+                        <input type="text" maxlength="15" class="text-in g-10" formControlName="title" placeholder="输入消息标题" />
+                    </div>
+                </div>
+                <div class="flex g-10 textarea margin-a margin-t20 flex-align-c flex-justify">
+                    <div class="g-10">
+                        <p class="font-gray font-left margin-b10">输入详情
+                            <span *ngIf="formModel.hasError('required',['body'])" class="font-strong font-tip">*必填项</span>
+                        </p>
+                        <textarea class="g-10 text-in" placeholder="输入消息详情" formControlName="body" [rows]="3" maxlength="500"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,216 @@
+.home-page {
+    background: #f6f7f7 url("../../../../assets/img/bg_homepage.jpg") no-repeat;
+    padding-bottom: 20px;
+}
+
+.home-page-top {
+    padding: 20px 30px 10px 30px;
+    flex: none;
+    background-color: transparent;
+}
+
+.home-page-top .font-title {
+    color: #4d4d4d;
+    font-size: 28px;
+}
+
+.home-page-body-today {
+    width: 100%;
+    overflow: auto;
+}
+
+.welcome-info {
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.home-page-top-tips {
+    font-size: 12px;
+    color: #999;
+    text-align: right;
+    margin-right: 30px;
+}
+
+.home-page-body {
+    height: 100%;
+    flex-direction: column;
+}
+
+
+/* tabs栏切换样式 */
+
+.home-page-body .tabs-bar {
+    height: 40px;
+}
+
+.home-page-body .tabs-bar .tabs-nav {
+    display: inline-block;
+    height: 40px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%)!important;
+}
+
+::ng-deep .tabs-bar .tabs-nav .tabs-tab a {
+    float: left;
+    width: 160px;
+    color: #666;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 40px;
+    position: relative;
+}
+
+::ng-deep .tabs-nav .tabs-tab a.active,
+::ng-deep .tabs-nav .tabs-tab a:hover {
+    color: #04a7b8;
+}
+
+::ng-deep .tabs-nav a.active:before,
+::ng-deep .tabs-nav .tabs-tab a:hover:before {
+    display: table;
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: #04a7b8;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    z-index: 1;
+}
+
+::ng-deep .tabs-nav .tabs-tab a i {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+    margin-top: -2px;
+}
+
+::ng-deep .tabs-nav .tabs-tab a i.tabs-today {
+    background: url("../../../../assets/img/icon_today_flight_dark.png") no-repeat;
+    background-position: center;
+}
+
+::ng-deep .tabs-nav .tabs-tab a i.tabs-yesterday {
+    background: url("../../../../assets/img/icon_yestoday_flight_dark.png") no-repeat;
+    background-position: center;
+}
+
+::ng-deep .tabs-nav .tabs-tab a i.tabs-tomorrow {
+    background: url("../../../../assets/img/icon_tomorrow_flight_dark.png") no-repeat;
+    background-position: center;
+}
+
+::ng-deep .tabs-nav a.active i.tabs-today {
+    background: url("../../../../assets/img/icon_today_flight_blue.png") no-repeat;
+    background-position: center;
+}
+
+::ng-deep .tabs-nav a.active i.tabs-yesterday {
+    background: url("../../../../assets/img/icon_yestoday_flight_blue.png") no-repeat;
+    background-position: center;
+}
+
+::ng-deep .tabs-nav a.active i.tabs-tomorrow {
+    background: url("../../../../assets/img/icon_tomorrow_flight_blue.png") no-repeat;
+    background-position: center;
+}
+
+::ng-deep .tabs-nav a:hover i.tabs-today {
+    background: url("../../../../assets/img/icon_today_flight_blue.png") no-repeat;
+    background-position: center;
+}
+
+::ng-deep .tabs-nav a:hover i.tabs-yesterday {
+    background: url("../../../../assets/img/icon_yestoday_flight_blue.png") no-repeat;
+    background-position: center;
+}
+
+::ng-deep .tabs-nav a:hover i.tabs-tomorrow {
+    background: url("../../../../assets/img/icon_tomorrow_flight_blue.png") no-repeat;
+    background-position: center;
+}
+
+.flight-hour-stat {
+    overflow: hidden;
+}
+
+.flight-day-stat,
+.flight-day-stat-data {
+    height: 300px;
+}
+
+.flight-hour-stat-data .bar-stat {
+    height: 250px;
+}
+
+.flight-day-stat-data {
+    width: 250px;
+}
+
+.day-stat-legend {
+    width: 150px;
+}
+
+.auto-refresh-but i.opt-refresh {
+    position: relative;
+}
+
+.lug-stat-day .stat-day-box {
+    flex-direction: column;
+}
+
+i.opt-autorefresh {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: 0;
+    right: 0;
+    background: url("../../../../assets/img/icon_autorefresh_blue.png") no-repeat;
+    background-position: center;
+}
+
+.stat-day-box p.title {
+    font-size: 14px;
+    color: #999;
+}
+
+.psg-hour-stat,
+.lug-hour-stat {
+    overflow: hidden;
+}
+
+
+/* 点击设置按钮 */
+
+::ng-deep .auto-setting-box ui-selectbutton a {
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-style: normal;
+    font-size: 14px;
+    color: #666;
+}
+
+::ng-deep .auto-setting-box ui-selectbutton a:hover {
+    background-color: #e6f9fb;
+}
+
+::ng-deep .auto-setting-box ui-selectbutton a.active {
+    color: #04a7b8;
+}
+
+.auto-setting-box div a {
+    display: block;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-style: normal;
+    font-size: 14px;
+    color: #666;
+}

@@ -1,0 +1,97 @@
+li {
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #d9d9d9;
+    width: 33%;
+    position: relative;
+}
+
+li p {
+    font-size: 26px;
+    margin-top: 5px;
+    font-weight: lighter;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+.flight-day-stat,
+.flight-hour-stat-data,
+.flight-day-stat-data {
+    height: 250px;
+    width: 100%;
+}
+
+.c-warp {
+    background-color: #f6f7f7;
+    padding-bottom: 0;
+    height: 100%;
+    overflow: auto;
+}
+
+.bottom-body {
+    flex-direction: column;
+    overflow: auto;
+}
+
+
+/* .top-opt {
+  border-bottom: 1px solid #d9d9d9;
+} */
+
+.c-table {
+    min-height: 50px;
+    margin: 0 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, .06) 0 3px 15px;
+    flex-direction: column;
+    flex: none;
+}
+
+.top-sch {
+    /* border-bottom: none; */
+    /* background-color: #ffffff; */
+}
+
+
+/*圆形背景以及图标展示部分样式*/
+
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.circle-color1 {
+    background-color: #dcf6f9;
+}
+
+.circle-color2 {
+    background-color: #dfe6e7;
+}
+
+.circle-color3 {
+    background-color: #fbecde;
+}
+
+.circle-color4 {
+    background-color: #f8d9dd;
+}
+
+.circle-color5 {
+    background-color: #dfece0;
+}
+
+li div h4 i.icon {
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    left: 10px;
+}

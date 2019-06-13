@@ -1,0 +1,60 @@
+.c-message-new {
+    padding: 20px;
+    width: 720px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: linear-gradient(#ebeeef, #ffffff);
+    box-shadow: 1px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.mess-icon {
+    float: left;
+    width: 40px;
+    height: 40px;
+    background-color: #04a7b8;
+    border-radius: 100%;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+}
+
+:host ::ng-deep .ant-select-selection__placeholder,
+.ant-select-search__field__placeholder {
+    font-size: 16px;
+    color: #04a7b8;
+    text-decoration: underline;
+}
+
+:host ::ng-deep .ant-select-selection {
+    border: none;
+}
+
+:host ::ng-deep .ant-select-arrow {
+    display: none;
+}
+
+:host ::ng-deep .ant-select-selection {
+    background-color: transparent!important;
+}
+
+:host ::ng-deep .ant-select-open .ant-select-selection {
+    box-shadow: 0 0 0 0px rgba(4, 167, 184, 0.2);
+    background-color: transparent!important;
+}
+
+.textarea textarea {
+    box-shadow: 0 0px 0px rgba(18, 33, 51, 0.1) inset;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+.c-message-new .panel-cont .text-in {
+    background-color: transparent;
+}

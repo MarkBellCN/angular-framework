@@ -1,0 +1,66 @@
+<div class="flex flex-align-c flex-justify g-9 margin-a margin-t20">
+    <span class="font-xxxl">{{title}}</span>
+    <div class="flex">
+        <button class="but margin-r20 but-mm" (click)="dataTableService.sidebarClose()">取消</button>
+        <button *ngIf="desc!='detail'" class="but but-yellow but-mm" [disabled]="formModel.invalid||!dataTableService.saveButton" (click)="dataTableService.save(formModel.value,desc)">确定
+  </button>
+    </div>
+</div>
+
+<div class="panel-cont margin-t10">
+    <form [formGroup]="formModel" class="relative">
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">类型
+                </p>
+                <input type="text" class="text-in g-10" formControlName="slType" [readonly]="desc==dataTableService.commonEnum.descEnum.UPDATE.value" placeholder="输入参数名称" maxlength="30" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">用户
+                </p>
+                <input type="text" class="text-in g-10" formControlName="slUser" [readonly]="desc==dataTableService.commonEnum.descEnum.UPDATE.value" placeholder="输入参数名称" maxlength="30" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">日志时间
+                </p>
+                <input type="text" class="text-in g-10" formControlName="slTime" [readonly]="desc==dataTableService.commonEnum.descEnum.UPDATE.value" placeholder="输入参数名称" maxlength="30" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">日志来源
+                </p>
+                <input type="text" class="text-in g-10" formControlName="slSource" [readonly]="desc==dataTableService.commonEnum.descEnum.UPDATE.value" placeholder="输入参数名称" maxlength="30" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">进程ID
+                </p>
+                <input type="text" class="text-in g-10" formControlName="slProcessId" [readonly]="desc==dataTableService.commonEnum.descEnum.UPDATE.value" placeholder="输入参数名称" maxlength="30" />
+            </div>
+        </div>
+        <div class="flex g-9 textarea margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">简要说明</p>
+                <textarea class="g-10 text-in" [rows]="3" formControlName="slBrief" [readonly]="desc==dataTableService.commonEnum.descEnum.UPDATE.value" maxlength="255"></textarea>
+            </div>
+        </div>
+        <div class="flex g-9 textarea margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">详细说明</p>
+                <textarea class="g-10 text-in" [rows]="3" formControlName="slDetail" [readonly]="desc==dataTableService.commonEnum.descEnum.UPDATE.value" maxlength="255"></textarea>
+            </div>
+        </div>
+        <div class="flex g-9 textarea margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">备注</p>
+                <textarea class="g-10 text-in" [rows]="3" formControlName="slRemark" [readonly]="desc==dataTableService.commonEnum.descEnum.UPDATE.value" maxlength="255"></textarea>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,23 @@
+<div class="input-excel-alert-box" [@showDialogEvent]="state">
+    <div class="input-excel-mask" style="display: block"></div>
+    <div class="upload-content" style="z-index:999; position: absolute; width:100%;">
+        <div class="alert">
+            <div class="font-title">提示</div>
+        </div>
+        <div class="upload-file-box">
+            <div class="upload-file margin-r30">
+                <nz-upload nzMultiple nzAccept="application/vnd.ms-excel" [(nzFileList)]="fileList" [nzLimit]="1" [nzBeforeUpload]="beforeUpload" [nzName]="'files'" (nzChange)="handleChange($event)">
+                    <button nz-button [disabled]="fileList.length != 0">
+                  <i class="anticon anticon-upload"></i><span>选择文件</span>
+                </button>
+                </nz-upload>
+            </div>
+            <p class="font-strong text-c but margin-a"><a class="" (click)="downLoadTemplet();">下载模板</a></p>
+        </div>
+
+        <div class="ant-confirm-btns">
+            <button nz-button class="ant-btn ant-btn-ghost ant-btn-lg margin-r20" (click)="closeUploadDialog();"><span>取消</span></button>
+            <button nz-button [nzLoading]="uploading" class="ant-btn ant-btn-primary ant-btn-lg" (click)="handleUpload()" [disabled]="fileList.length == 0">{{ uploading ? '正在上传' : '确定' }}</button>
+        </div>
+    </div>
+</div>

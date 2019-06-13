@@ -1,0 +1,145 @@
+<div class="flex flex-align-c flex-justify g-9 margin-a margin-t20">
+    <span class="font-xxxl">{{title}}</span>
+    <div class="flex">
+        <button class="but margin-r20 but-mm" (click)="dataTableService.sidebarClose()">取消</button>
+        <button *ngIf="desc!='detail'" class="but but-yellow but-mm" [disabled]="formModel.invalid||!dataTableService.saveButton" (click)="save()">确定
+</button>
+    </div>
+</div>
+
+<div class="panel-cont margin-t10">
+    <form [formGroup]="formModel" class="relative">
+        <div *ngIf="desc=='detail'" class="sidebar-mask"></div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-4-8">
+                <p class="font-gray font-left margin-b10">职员编号
+                    <span *ngIf="formModel.hasError('required', ['empNo'])" class="font-strong font-tip">*必填项</span>
+                    <span *ngIf="formModel.hasError('uniqueValidators',['empNo'])" class="font-strong font-tip">职员编号已存在</span>
+                </p>
+                <input type="text" maxlength="10" class="text-in g-10" formControlName="empNo" [class.has-error]="!formModel.controls['empNo'].valid&&formModel.controls['empNo'].touched" placeholder="输入职员编号" [readonly]="desc==dataTableService.commonEnum.descEnum.UPDATE.value"
+                />
+            </div>
+            <div class="g-4-8">
+                <p class="font-gray font-left margin-b10">部门名称
+                    <span *ngIf="formModel.hasError('required', ['empDepartment'])" class="font-strong font-tip">*必填项</span>
+                </p>
+                <nz-select nzShowSearch nzAllowClear class="g-10 sch-in" formControlName="empDepartment" nzPlaceHolder="选择部门">
+                    <nz-option *ngFor="let item of dataTableService.commonEnum.departmentEnum.DATAS" [nzLabel]="item.label" [nzValue]="item.value">
+                    </nz-option>
+                </nz-select>
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-4-8">
+                <p class="font-gray font-left margin-b10">姓名
+                    <span *ngIf="formModel.hasError('required', ['empName'])" class="font-strong font-tip">*必填项</span>
+                </p>
+                <input type="text" maxlength="15" class="text-in g-10" formControlName="empName" [class.has-error]="!formModel.controls['empName'].valid&&formModel.controls['empName'].touched" placeholder="输入姓名" />
+            </div>
+            <div class="g-4-8">
+                <p class="font-gray font-left margin-b10">性别
+                </p>
+                <nz-select nzShowSearch nzAllowClear class="g-10 sch-in" formControlName="empGender" nzPlaceHolder="选择性别">
+                    <nz-option *ngFor="let item of dataTableService.commonEnum.genderEnum.INPUTDATAS" [nzLabel]="item.label" [nzValue]="item.value">
+                    </nz-option>
+                </nz-select>
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">岗位</p>
+                <nz-select class="g-10" [nzMode]="'multiple'" [nzPlaceHolder]="'选择岗位'" formControlName="empPost" [(ngModel)]="currempPost" [nzNotFoundContent]="'没有可选内容'">
+                    <nz-option *ngFor="let option of dataTableService.commonEnum.postListEnum.DATAS" [nzLabel]="option.label" [nzValue]="option.value">
+                    </nz-option>
+                </nz-select>
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">班组
+                </p>
+                <nz-select class="g-10" [nzMode]="'multiple'" [nzPlaceHolder]="'选择班组'" formControlName="empTeam" [(ngModel)]="currempTeam" [nzNotFoundContent]="'没有可选内容'">
+                    <nz-option *ngFor="let option of dataTableService.commonEnum.teamListEnum.DATAS" [nzLabel]="option.label" [nzValue]="option.value">
+                    </nz-option>
+                </nz-select>
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-4-8">
+                <p class="font-gray font-left margin-b10">身份证号
+                </p>
+                <input type="text" maxlength="18" class="text-in g-10" formControlName="empIdcardno" [class.has-error]="!formModel.controls['empIdcardno'].valid&&formModel.controls['empIdcardno'].touched" placeholder="输入身份证号" />
+            </div>
+            <div class="g-4-8">
+                <p class="font-gray font-left margin-b10">职员卡号
+                </p>
+                <input type="text" maxlength="30" class="text-in g-10" formControlName="empCardid" [class.has-error]="!formModel.controls['empCardid'].valid&&formModel.controls['empCardid'].touched" placeholder="输入职员卡号" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-4-8">
+                <p class="font-gray font-left margin-b10">政治面貌
+                </p>
+                <input type="text" maxlength="15" class="text-in g-10" formControlName="empPoliticalFace" [class.has-error]="!formModel.controls['empPoliticalFace'].valid&&formModel.controls['empPoliticalFace'].touched" placeholder="输入政治面貌" />
+            </div>
+            <div class="g-4-8">
+                <p class="font-gray font-left margin-b10">职务名称
+                </p>
+                <input type="text" maxlength="15" class="text-in g-10" formControlName="empDuty" [class.has-error]="!formModel.controls['empDuty'].valid&&formModel.controls['empDuty'].touched" placeholder="输入职务名称" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">员工照片
+                  <span class="font-strong font-tip">图片大小只能上传小于800KB</span>
+                </p>
+                <nz-upload nzSize="800" [nzAction]="dataTableService.commonEnum.fileServerInfo.FILESERVICEURL.value" [nzName]="'files'" nzListType="picture-card" [(nzFileList)]="fileList" [nzShowButton]="fileList.length < 1" (nzChange)="handleChange($event)"  [nzCustomRequest]="fileService.nzCustomRequest"
+                    [nzPreview]="fileService.handlePreview">
+                    <i class="anticon anticon-plus"></i>
+                </nz-upload>
+                <nz-modal [nzVisible]="fileService.previewVisible" [nzContent]="modalContent" [nzFooter]="null" (nzOnCancel)="fileService.previewVisible=false">
+                    <ng-template #modalContent>
+                        <img [src]="fileService.previewImage" [ngStyle]="{ 'width': '100%' }" />
+                    </ng-template>
+                </nz-modal>
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-4-8">
+                <p class="font-gray font-left margin-b10">员工类别
+                </p>
+                <input type="text" maxlength="15" class="text-in g-10" formControlName="empType" [class.has-error]="!formModel.controls['empType'].valid&&formModel.controls['empType'].touched" placeholder="输入员工类别" />
+            </div>
+            <div class="g-4-8">
+                <p class="font-gray font-left margin-b10">技能等级
+                </p>
+                <input type="text" maxlength="15" class="text-in g-10" formControlName="empRank" [class.has-error]="!formModel.controls['empRank'].valid&&formModel.controls['empRank'].touched" placeholder="输入技能等级" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-4-8">
+                <p class="font-gray font-left margin-b10">移动电话
+                </p>
+                <input type="text" maxlength="15" class="text-in g-10" formControlName="empMobilephone" [class.has-error]="!formModel.controls['empMobilephone'].valid&&formModel.controls['empMobilephone'].touched" placeholder="输入移动电话" />
+            </div>
+            <div class="g-4-8">
+                <p class="font-gray font-left margin-b10">办公电话
+                </p>
+                <input type="text" maxlength="15" class="text-in g-10" formControlName="empOfficephone" [class.has-error]="!formModel.controls['empOfficephone'].valid&&formModel.controls['empOfficephone'].touched" placeholder="输入办公电话" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-4-8">
+                <p class="font-gray font-left margin-b10">家庭电话
+                </p>
+                <input type="text" maxlength="15" class="text-in g-10" formControlName="empHomephone" [class.has-error]="!formModel.controls['empHomephone'].valid&&formModel.controls['empHomephone'].touched" placeholder="输入家庭电话" />
+            </div>
+        </div>
+        <div class="flex g-9 textarea margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">备注</p>
+                <textarea class="g-10 text-in" [rows]="3" formControlName="empRemark" maxlength="120"></textarea>
+            </div>
+        </div>
+    </form>
+</div>

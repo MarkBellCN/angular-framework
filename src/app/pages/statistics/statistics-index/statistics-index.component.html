@@ -1,0 +1,221 @@
+<div class='c-warp home-page flex'>
+    <div class="home-page-top top-opt flex flex-justify">
+        <div class="title flex flex-left g-5">
+            <h1 class="font-title">{{statisticsService.commonEnum.sysParamListEnum.AIRORTNAMECH.label}}{{APP_NAME}}</h1>
+        </div>
+        <div class="opt-area-button flex flex-right flex-align-c g-5">
+            <div class="welcome-info margin-r20">
+                <i class="opt-hello margin-r5"></i>
+                <span class="user-info">{{userDetails?.showName}}，</span>
+                <span class="date-info">{{dateInfo}}</span>
+            </div>
+            <button class="auto-refresh-but but margin-l10">
+        <div (click)="initChart()">
+          <i class="opt-refresh"><i *ngIf="statisticsService.refreshable" class="opt-autorefresh"></i></i>
+          <span>刷新</span>
+        </div>
+        <span class="separate-line">|</span>
+        <i class="auto-setting" (click)="refreshBoxChange($event)">
+          <div class="auto-setting-box" [ngClass]="refreshBox?'show':''">
+            <ui-selectbutton class="" [styleClass]="''" [model]="statisticsService.commonEnum.refreshTimeEnum.DATAS"
+                             [(selectValue)]="statisticsService.refreshTimer" (selectValueChange)="statisticsService.autoRefreshTimerChange($event)"></ui-selectbutton>
+
+            <div>
+              <a *ngIf="statisticsService.refreshable" (click)="statisticsService.autoRefreshClose()" href="javascript:;">关闭自动刷新</a>
+              <a *ngIf="!statisticsService.refreshable" (click)="statisticsService.autoRefreshOpen()" href="javascript:;">打开自动刷新</a>
+            </div>
+          </div>
+        </i>
+      </button>
+        </div>
+    </div>
+    <div class="home-page-top-tips">
+        <span *ngIf="statisticsService.refreshable">每{{statisticsService.getRefreshTime()}}自动刷新，</span>最后刷新时间：{{statisticsService.getLastLoadTime()}}
+    </div>
+
+    <!-- 统计主体部分 -->
+    <div class="home-page-body flex">
+        <!-- tabs栏切换 -->
+        <div class="tabs-bar">
+            <ui-selectbutton class="tabs-nav" [styleClass]="'tabs-tab'" [model]="statisticsService.commonEnum.flightDateEnum.DATAS" [(selectValue)]="flightDate" (selectValueChange)="flightDateValueChange($event)"></ui-selectbutton>
+        </div>
+        <!-- 统计图表部分 -->
+        <div class="home-page-body-today">
+            <div reactive [(reactive)]="flightIsCollapsed" [nzBreakpoint]="'xl'" class="flight-stat flex">
+                <div *ngIf="!flightIsCollapsed" class="stat-day-box flight-day-stat c-shadowBox margin-t30 margin-l30 flex">
+                    <h2><i></i>出港航班统计</h2>
+                    <div echarts [options]="flightDayStatOption" class="flight-day-stat-data"></div>
+                    <div class="day-stat-legend">
+                        <ul>
+                            <li>
+                                <span style="background-color: #04A7B8"></span>
+                                <h5>起飞</h5>
+                                <p>{{this.flightDayStatData?.takeoffNum||0}}</p>
+                            </li>
+                            <li>
+                                <span style="background-color: #EC9F5A"></span>
+                                <h5>计划</h5>
+                                <p>{{this.flightDayStatData?.planNum||0}}</p>
+                            </li>
+                            <li>
+                                <span style="background-color: #DE4357"></span>
+                                <h5>延误</h5>
+                                <p>{{this.flightDayStatData?.dlyNum||0}}</p>
+                            </li>
+                            <li>
+                                <span style="background-color: #618087"></span>
+                                <h5>取消</h5>
+                                <p>{{this.flightDayStatData?.canNum||0}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <i class="legend-arrow arrow-left" (click)="flightIsCollapsed=!flightIsCollapsed"></i>
+                </div>
+                <div *ngIf="flightIsCollapsed" class="stat-day-box-collapsed c-shadowBox margin-t30 margin-l30">
+                    <h2><i></i>出港航班统计</h2>
+                    <i class="legend-arrow arrow-right" (click)="flightIsCollapsed=!flightIsCollapsed"></i>
+                </div>
+                <div class="stat-hour-box flight-hour-stat c-shadowBox g-10 margin-t30 margin-l20 margin-r30">
+                    <div class="stat-hour-box-top flex flex-justify margin-l20 margin-r20 margin-t20">
+                        <div class="flex flex-left">
+                            <h2>航班动态详情</h2>
+                            <span class="hour-stat-legend margin-l30" style="background-color: #04A7B8"></span>
+                            <span class="margin-l20">进港</span>
+                            <span class="hour-stat-legend margin-l20" style="background-color: #EC9F5A"></span>
+                            <span class="margin-l20">出港</span>
+                        </div>
+                        <div class="flex flex-right stat-range">
+                            <div class="g-10">
+                                <ui-selectbutton class="flex flex-right g-10" [styleClass]="'tab but-shad flex flex-right g-9'" [model]="statisticsService.commonEnum.statRangeEnum.DATAS" [(selectValue)]="flightHourStatRange" (selectValueChange)="flightHourStatRangeClick()" enterSearch></ui-selectbutton>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flight-hour-stat-data">
+                        <div echarts [options]="flightHourStatOption" (resize)="flightHourStatResizeChart()" (chartInit)="initFlightHourStatIntance($event)" class="bar-stat"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div reactive [(reactive)]="psgIsCollapsed" [nzBreakpoint]="'xl'" class="psg-stat flex">
+                <div *ngIf="!psgIsCollapsed" class="stat-day-box psg-day-stat c-shadowBox margin-t30 margin-l30 flex">
+                    <h2><i></i>旅客统计</h2>
+                    <div echarts [options]="psgDayStatOption" class="margin-t20 flight-day-stat-data"></div>
+                    <div class="day-stat-legend">
+                        <ul>
+                            <li>
+                                <span style="background-color: #04A7B8"></span>
+                                <h5>已值机未安检</h5>
+                                <p>{{psgDayStatData?.checkinNum||0}}</p>
+                            </li>
+                            <li>
+                                <span style="background-color: #618087"></span>
+                                <h5>已安检未登机</h5>
+                                <p>{{psgDayStatData?.verifyNum||0}}</p>
+                            </li>
+                            <li>
+                                <span style="background-color: #EC9F5A"></span>
+                                <h5>已登机</h5>
+                                <p>{{psgDayStatData?.boardNum||0}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <i class="legend-arrow arrow-left" (click)="psgIsCollapsed=!psgIsCollapsed"></i>
+                </div>
+                <div *ngIf="psgIsCollapsed" class="stat-day-box-collapsed c-shadowBox margin-t30 margin-l30">
+                    <h2><i></i>旅客统计</h2>
+                    <i class="legend-arrow arrow-right" (click)="psgIsCollapsed=!psgIsCollapsed"></i>
+                </div>
+                <div class="stat-hour-box psg-hour-stat c-shadowBox g-10 margin-t30 margin-l20 margin-r30">
+                    <div class="stat-hour-box-top flex flex-justify margin-l20 margin-r20 margin-t20">
+                        <div class="flex flex-left">
+                            <h2>旅客统计详情</h2>
+                            <span class="hour-stat-legend margin-l30" style="background-color: #04A7B8"></span>
+                            <span class="margin-l20">值机数</span>
+                            <span class="hour-stat-legend margin-l20" style="background-color: #618087"></span>
+                            <span class="margin-l20">安检数</span>
+                            <span class="hour-stat-legend margin-l20" style="background-color: #EC9F5A"></span>
+                            <span class="margin-l20">登机数</span>
+                        </div>
+                        <div class="flex flex-right stat-range">
+                            <div class="g-10">
+                                <ui-selectbutton class="flex flex-right g-10" [styleClass]="'tab but-shad flex flex-right g-9'" [model]="statisticsService.commonEnum.statRangeEnum.DATAS" [(selectValue)]="psgHourStatRange" (selectValueChange)="psgHourStatRangeClick()" enterSearch></ui-selectbutton>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flight-hour-stat-data">
+                        <div echarts [options]="psgHourStatOption" class="bar-stat" (chartInit)="initPsgHourStatIntance($event)"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div reactive [(reactive)]="lugIsCollapsed" [nzBreakpoint]="'xl'" class="lug-stat-day lug-stat flex">
+                <div *ngIf="!lugIsCollapsed" class="stat-day-box c-shadowBox margin-t30 margin-l30 flex">
+                    <h2><i></i>行李统计</h2>
+                    <div class="flex flex-justify border-b stat-box-item">
+                        <div class="g-3 border-r">
+                            <h4><i class="icon icon-lug"></i></h4>
+                            <p class="title">交运行李总数</p>
+                            <p class="num">{{(lugDayStatData?.regLuggageNum)?lugDayStatData?.regLuggageNum:'0'}}</p>
+                        </div>
+                        <div class="g-2 border-r">
+                            <h4><i class="icon icon-unpack"></i></h4>
+                            <p class="title">开包数</p>
+                            <p class="num">{{(lugDayStatData?.regUnpackNum)?lugDayStatData?.regUnpackNum:'0'}}</p>
+                            <p class="rate">{{(lugDayStatData?.rateLug)?lugDayStatData?.rateLug:'0'}}%</p>
+                        </div>
+                        <div class="g-2">
+                            <h4><i class="icon icon-Article"></i></h4>
+                            <p class="title">物品数</p>
+                            <p class="num">{{(lugDayStatData?.regUnpackArticleNum)?lugDayStatData?.regUnpackArticleNum:'0'}}</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-justify stat-box-item">
+                        <div class="g-5 border-r">
+                            <h4><i class="icon icon-handlug"></i></h4>
+                            <p class="title">随身行李</p>
+                            <p class="num">-----</p>
+                        </div>
+                        <div class="g-2-5 border-r">
+                            <h4><i class="icon icon-unpack"></i></h4>
+                            <p class="title">开包数</p>
+                            <p class="num">{{(lugDayStatData?.unpackLuggageNum)?lugDayStatData?.unpackLuggageNum:'0'}}</p>
+                        </div>
+                        <div class="g-2-5">
+                            <h4><i class="icon icon-Article"></i></h4>
+                            <p class="title">物品数</p>
+                            <p class="num">{{(lugDayStatData?.unpackArticleNum)?lugDayStatData?.unpackArticleNum:'0'}}</p>
+                        </div>
+                    </div>
+                    <i class="legend-arrow arrow-left" (click)="lugIsCollapsed=!lugIsCollapsed"></i>
+                </div>
+
+                <div *ngIf="lugIsCollapsed" class="stat-day-box-collapsed c-shadowBox margin-t30 margin-l30">
+                    <h2><i></i>行李统计</h2>
+                    <i class="legend-arrow arrow-right" (click)="lugIsCollapsed=!lugIsCollapsed"></i>
+                </div>
+                <div class="stat-hour-box lug-hour-stat c-shadowBox g-10 margin-t30 margin-l20 margin-r30">
+                    <div class="stat-hour-box-top flex flex-justify margin-l20 margin-r20 margin-t20">
+                        <div class="flex flex-left">
+                            <h2>交运行李统计详情</h2>
+                            <span class="hour-stat-legend margin-l30" style="background-color: #04A7B8"></span>
+                            <span class="margin-l20">交运行李数</span>
+                            <span class="hour-stat-legend margin-l20" style="background-color: #EC9F5A"></span>
+                            <span class="margin-l20">开包数</span>
+                            <span class="hour-stat-legend margin-l20" style="background-color: #618087"></span>
+                            <span class="margin-l20">开包物品数</span>
+                        </div>
+                        <div class="flex flex-right stat-range">
+                            <div class="g-10">
+                                <ui-selectbutton class="flex flex-right g-10" [styleClass]="'tab but-shad flex flex-right g-9'" [model]="statisticsService.commonEnum.statRangeEnum.DATAS" [(selectValue)]="lugHourStatRange" (selectValueChange)="lugHourStatRangeClick()" enterSearch></ui-selectbutton>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flight-hour-stat-data">
+                        <div echarts [options]="lugHourStatOption" class="bar-stat" (chartInit)="initLugHourStatIntance($event)"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<div class='c-message flex' *ngIf="showMessage">
+    <!-- 新建消息页面 -->
+    <app-message-save [(showSendMessage)]="showSendMessage" [(sendByCheckData)]="sendByCheckData"></app-message-save>
+    <!-- 左侧消息列表展示 -->
+    <div class="c-message-left-list">
+        <div class="mess-list-top flex flex-justify">
+            <!-- <div class="flex-left ">
+                <span class="mess-top-title">今天的消息</span>
+                <i class="anticon anticon-down"></i>
+            </div> -->
+            <div class="flex-left">
+                <nz-range-picker class="float-l" style="width:93%;" [nzFormat]="'YYYY-MM-DD'" [nzPlaceHolder]="'选择日期'" [(ngModel)]="messageService.pageQuery.data.sendTimes" (ngModelChange)="messageService.getDataList()"></nz-range-picker>
+            </div>
+            <div class="flex-right mess-close">
+                <i class="icon icon-close" (click)="closeMessage()"></i>
+            </div>
+
+        </div>
+        <div class="mess-content">
+            <div class="tabs-bar">
+                <ui-selectbutton class="tabs-nav" [styleClass]="'tabs-tab'" [model]="messageService.commonEnum.messageSendTypeEnum.DATAS" [(selectValue)]="messageService.pageQuery.data.mySend" (selectValueChange)="messageService.getDataList()" enterSearch></ui-selectbutton>
+            </div>
+            <nz-input [(ngModel)]="messageService.searchValue" (nzOnSearch)="messageService.searchData($event)" [nzType]="'search'"  [nzPlaceHolder]="'在当前范围内查找...'"></nz-input>
+            <ul>
+                <div *ngFor="let data of messageService.dataList">
+                    <li [ngClass]="(messageService.checkData?.id==data.id)?'active':''" (click)="toShowDetailPage(data)">
+                        <div class="mess-item-box">
+                            <div class="mess-icon margin-r10">
+                                {{(data.senderName?.length>1)?data.senderName.substring(0,1):data.senderName}}
+                            </div>
+                            <div class="mess-content-text">
+                                <h4 class="">{{data.title}}<span class="float-r">{{data.sendTime}}</span></h4>
+                                <p><span>{{data.senderName}}</span>{{toRemoves(data.body)}}</p>
+                            </div>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div class="mess-pagination">
+            <nz-pagination (nzPageIndexChange)="messageService.pageIndexChange($event)" [(nzPageIndex)]="messageService.pageQuery.pageNum" [nzTotal]="messageService.totalRecords" [(nzPageSize)]="messageService.pageQuery.pageSize" (nzPageSizeChange)="messageService.pageSizeChange($event)"></nz-pagination>
+        </div>
+
+        <!-- 新建消息按钮 -->
+        <div class="mess-new">
+            <button class="but border-n" (click)="toSendMessage(false)">
+        <i class="anticon anticon-plus"></i>
+        新建消息
+      </button>
+        </div>
+    </div>
+    <!-- 右侧消息详情展示 -->
+    <div class="c-message-right-detail" *ngIf="showDetailPage">
+        <div class="mess-detail-top flex flex-justify">
+            <div class="flex-left">
+                <div class="mess-icon margin-r10">
+                    {{(messageService.checkData?.senderName?.length>1)?messageService.checkData.senderName.substring(0,1):messageService.checkData.senderName}}
+                </div>
+                <span>{{messageService.checkData?.senderName}}</span>
+            </div>
+            <button class="but flex-right" (click)="toSendMessage(true)">
+        写消息
+      </button>
+        </div>
+        <div class="mess-detail-content">
+            <div>
+                <h4 class="margin-b5">{{messageService.checkData?.title}}</h4>
+                <p class="mess-time margin-b10">发送时间：{{messageService.checkData?.sendTime}}</p>
+                <p class="mess-text" *ngFor="let body of messageService.checkData?.body?.split('\\r\\n')">{{body}}</p>
+            </div>
+        </div>
+    </div>
+</div>

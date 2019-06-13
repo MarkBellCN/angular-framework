@@ -1,0 +1,180 @@
+:host .c-warp {
+    padding-bottom: 0;
+}
+
+.con-body {
+    padding-bottom: 0px;
+}
+
+.con-body .con-department {
+    flex: 0 0 280px;
+    background-color: #f8f8f8;
+    border-right: 1px solid #d9d9d9;
+    flex-direction: column;
+}
+
+.con-body .con-department h4 {
+    color: #444;
+    font-size: 16px;
+    /* height: 32px; */
+    line-height: 24px;
+    min-height: 24px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.con-body .con-department .department-text {
+    padding: 0 18px 30px 18px;
+    border-top: 1px solid #d9d9d9;
+}
+
+.con-body .con-department .department-text h4 {
+    margin-top: 10px;
+}
+
+.con-body .con-department .department-text>div>span {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 5px;
+    flex: 0 0 60px;
+    text-align: justify;
+}
+
+.con-body .con-department .department-text>div>p {
+    color: #444;
+}
+
+.con-body .con-table-employee {
+    flex-direction: column;
+}
+
+:host ::ng-deep .ant-tree li .ant-tree-node-content-wrapper.ant-tree-node-selected {
+    width: calc(100% - 8px);
+}
+
+:host ::ng-deep .ant-tree li span[draggable],
+:host ::ng-deep .ant-tree li span[draggable="true"] {
+    width: calc(100% - 8px);
+}
+
+:host ::ng-deep .ant-tree li .ant-tree-node-content-wrapper {
+    /* display: inline!important; */
+}
+
+:host ::ng-deep .con-department .ant-tree {
+    border: none;
+    font-size: 14px;
+    color: #444;
+    line-height: 14px;
+    padding-left: 20px;
+    overflow: hidden;
+}
+
+:host ::ng-deep .con-department .ant-tree li .ant-tree-node-content-wrapper:hover {
+    background-color: transparent;
+    color: #04a7b8;
+}
+
+
+/* :host ::ng-deep .ant-tree .ant-tree-div:hover i.icon {
+    display: inline-block;
+} */
+
+:host ::ng-deep .con-department .ant-tree li .ant-tree-node-content-wrapper.ant-tree-node-selected {
+    background-color: transparent;
+    color: #04a7b8;
+}
+
+.con-body .con-table-employee {
+    /* padding-bottom: 20px; */
+}
+
+.con-department i.icon-btn-more {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 230px;
+}
+
+.fa {
+    font-size: 16px!important;
+}
+
+.con-department .ant-tree-div {
+    display: inline-block;
+    width: 100%;
+}
+
+:host ::ng-deep .ant-tree li span.ant-tree-switcher,
+.ant-tree li span.ant-tree-iconEle {
+    line-height: 33px!important;
+}
+
+
+/* 绑定卡片、取消卡片样式 */
+
+:host ::ng-deep .ant-modal-close {
+    display: none;
+}
+
+:host ::ng-deep .nzModal-box .ant-modal-content {
+    padding: 30px 40px;
+    width: 540px;
+    height: 360px;
+}
+
+:host ::ng-deep .nzModal-box .ant-modal-header {
+    padding: 0;
+    border-bottom: none;
+}
+
+:host ::ng-deep .nzModal-box .ant-modal-title {
+    font-size: 28px;
+    font-weight: 200;
+    text-align: center;
+}
+
+:host ::ng-deep .nzModal-box .ant-modal-title {
+    height: 42px;
+}
+
+:host ::ng-deep .nzModal-box .ant-modal-body {
+    /* display: flex; */
+    padding: 0;
+    margin-top: 70px;
+}
+
+:host ::ng-deep .nzModal-box span {
+    width: 50px;
+    line-height: 30px;
+}
+
+:host ::ng-deep .nzModal-box input {
+    height: 30px;
+}
+
+:host ::ng-deep .nzModal-box {}
+
+:host ::ng-deep .nzModal-box .ant-modal-footer {
+    border-top: 0;
+    position: absolute;
+    right: 40px;
+    bottom: 30px;
+}
+
+
+/* 部门新增和编辑 */
+
+:host ::ng-deep .c-panel .ui-overlaypanel {
+    position: initial;
+}
+
+.bind-menu li.notAllow {
+    cursor: not-allowed!important;
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.25);
+}
+
+p.font-strong {
+    margin-top: 5px;
+}

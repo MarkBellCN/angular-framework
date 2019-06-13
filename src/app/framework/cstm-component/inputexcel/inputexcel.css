@@ -1,0 +1,77 @@
+.input-excel-alert-box {
+    width: 540px;
+    height: 360px;
+    z-index: 999;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 45px rgba(0, 0, 0, .2);
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+
+.alert-box {
+    display: none;
+    z-index: 99;
+}
+
+.upload-file {
+    width: 320px;
+    min-height: 30px;
+    background: #eee;
+    border-radius: 6px !important;
+}
+
+.upload-file input {
+    width: 100%;
+    padding: 30px;
+}
+
+.input-excel-mask {
+    position: fixed;
+    width: 80000%;
+    left: -500%;
+    top: -500%;
+    display: block;
+    background: rgba(0, 0, 0, 0.45);
+    height: 100000%;
+    z-index: 99;
+}
+
+.upload-content {
+    z-index: 999;
+    position: relative;
+    background-color: #fff;
+    width: 540px;
+    height: 360px;
+    padding: 30px 40px;
+    border-radius: 8px;
+}
+
+.upload-content .upload-file-box {
+    margin-top: 70px;
+    position: relative
+}
+
+.font-strong.text-c {
+    width: 110px;
+    line-height: 30px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.upload-content .alert .font-title {
+    font-size: 28px;
+    font-weight: 200;
+    text-align: center;
+}
+
+.upload-content .ant-confirm-btns {
+    position: absolute;
+    right: 40px;
+    bottom: 30px;
+}

@@ -1,0 +1,64 @@
+<div class="flex flex-align-c flex-justify g-9 margin-a margin-t20">
+    <span class="font-xxxl">{{title}}</span>
+    <div class="flex">
+        <button class="but margin-r20 but-mm" (click)="dataTableService.sidebarClose()">取消</button>
+        <button *ngIf="desc!='detail'" class="but but-yellow but-mm" [disabled]="formModel.invalid||!dataTableService.saveButton" (click)="dataTableService.save(formModel.value,desc)">确定
+    </button>
+    </div>
+</div>
+
+<div class="panel-cont margin-t10">
+    <form [formGroup]="formModel" class="relative">
+        <div *ngIf="desc=='detail'" class="sidebar-mask"></div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">登录名
+                    <span *ngIf="formModel.hasError('required',['loginName'])" class="font-strong font-tip">*必填项</span>
+                    <span *ngIf="formModel.hasError('pattern',['loginName'])" class="font-strong font-tip">输入3-15位字母开头数字下划线组合</span>
+                    <span *ngIf="formModel.hasError('uniqueValidators',['loginName'])" class="font-strong font-tip">登录名已存在</span>
+                </p>
+                <input type="text" class="text-in g-10" formControlName="loginName" [readonly]="desc==dataTableService.commonEnum.descEnum.UPDATE.value" [class.has-error]="!formModel.controls['loginName'].valid&&formModel.controls['loginName'].touched" placeholder="输入登录名"
+                    maxlength="15" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">用户名
+                    <span *ngIf="formModel.hasError('required',['userName'])" class="font-strong font-tip">*必填项</span>
+                    <span *ngIf="formModel.hasError('pattern',['userName'])" class="font-strong font-tip">输入1-8位汉字、字母数字下划线组合</span>
+                </p>
+                <input type="text" class="text-in g-10" formControlName="userName" [class.has-error]="!formModel.controls['userName'].valid&&formModel.controls['userName'].touched" placeholder="输入用户名" maxlength="20" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-4-5">
+                <p class="font-gray font-left margin-b10">状态
+                    <span *ngIf="formModel.hasError('required',['status'])" class="font-strong font-tip">*必填项</span>
+                </p>
+                <ui-selectbutton class="flex flex-center g-10" [styleClass]="'tab but-shad flex flex-center g-10'" formControlName="status" [model]="dataTableService.commonEnum.statusEnum.INPUTDATAS"></ui-selectbutton>
+            </div>
+            <div class="g-4-5">
+                <p class="font-gray font-left margin-b10">性别</p>
+                <ui-selectbutton class="flex flex-center g-10" [styleClass]="'tab but-shad flex flex-center g-10'" formControlName="sex" [model]="dataTableService.commonEnum.sexEnum.INPUTDATAS"></ui-selectbutton>
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div *ngIf="desc==dataTableService.commonEnum.descEnum.ADD.value" class="g-10">
+                <p class="font-gray font-left margin-b10">登录密码
+                    <span *ngIf="formModel.hasError('required',['password'])" class="font-strong font-tip">*必填项</span>
+                    <span *ngIf="formModel.hasError('pattern',['password'])" class="font-strong font-tip">输入6-18位字母数字</span>
+                </p>
+                <input type="password" pPassword class="text-in g-10" formControlName="password" [class.has-error]="!formModel.controls['password'].valid&&formModel.controls['password'].touched" placeholder="输入登录密码" maxlength="32" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">角色</p>
+                <nz-select class="g-10" [nzMode]="'multiple'" [nzPlaceHolder]="'选择角色'" formControlName="roleIds" [(ngModel)]="currUserRole" [nzNotFoundContent]="'没有可选内容'">
+                    <nz-option *ngFor="let option of enableAllRole" [nzLabel]="option.name" [nzValue]="option.id">
+                    </nz-option>
+                </nz-select>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,121 @@
+<div>
+    <h4>旅客信息</h4>
+    <div class="con-info-part flex flex-justify con-info-part-top">
+        <div class="g-5 img-person" (click)="dataTableService.filePreviewService.show({fileUrl:dataTableService.commonEnum.fileServerInfo.DOWNLOADURL.value + passengerDatas.psgIdcardPhoto})">
+            <div>
+                <img imgReactive [src]="dataTableService.commonEnum.fileServerInfo.DOWNLOADURL.value+passengerDatas?.psgIdcardPhoto" alt="" onerror="this.src='../../../../assets/img/pic_nopicture_gray180.png'" class="">
+            </div>
+        </div>
+        <div class="g-5 flex flex-wrap info-item">
+            <div class="g-10 border-be info-item-passenger">
+                <h5>旅客姓名</h5>
+                <p *ngIf="!passengerDatas?.psgNameEn" style="max-width:180px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;" title="{{passengerDatas?.psgNameCh}}">{{passengerDatas?.psgNameCh}}</p>
+                <p *ngIf="passengerDatas?.psgNameEn" style="max-width:180px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;" title="{{passengerDatas?.psgNameCh}}">{{passengerDatas?.psgNameCh}}({{passengerDatas?.psgNameEn}})</p>
+                <img *ngIf="passengerDatas.verifyRecordList&&passengerDatas.verifyRecordList.length" [src]="passengerDatas.verifyRecordList[0].vrPassFlag=='Y'?'../../../../assets/img/stamp_pass.png':'../../../../assets/img/stamp_reject.png'" alt="" class="img-stamp">
+            </div>
+            <div class="g-5 border-be" style="padding-top: 12px;">
+                <h5>民族</h5>
+                <p>{{(passengerDatas?.idcardList.length)?passengerDatas?.idcardList[0].idNation:'无'}}</p>
+            </div>
+            <div class="g-5 border-be" style="padding-top: 12px;">
+                <h5>性别</h5>
+                <p>{{colTemplateFunction("psgGender")}}</p>
+            </div>
+            <div class="g-5 " style="padding-top: 12px;">
+                <h5>行李件数</h5>
+                <p>{{passengerDatas?.psgLugNum}}</p>
+            </div>
+            <div class="g-5" style="padding-top: 12px;">
+                <h5>行李重量</h5>
+                <p>{{passengerDatas?.psgLugWeight}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="con-info-part flex flex-justify">
+        <div class="g-2-5">
+            <h5>旅客状态</h5>
+            <p>{{passengerDatas?.psgStatus}}</p>
+        </div>
+        <div class="g-2-5">
+            <h5>证件类型</h5>
+            <p>{{passengerDatas?.psgIdcardType}}</p>
+        </div>
+        <div class="g-5 ">
+            <h5>证件号码</h5>
+            <p>{{passengerDatas?.psgIdcardNo}}</p>
+        </div>
+    </div>
+    <div class="con-info-part flex flex-justify border-n">
+        <div class="g-10">
+            <h5>地址</h5>
+            <p>{{(passengerDatas?.idcardList.length)?passengerDatas?.idcardList[0].idAddress:'无'}}</p>
+        </div>
+    </div>
+    <h4>航班信息</h4>
+    <div class="con-info-part flex flex-justify">
+        <div class="g-5">
+            <!-- <img src="../../../../assets/img/airline/l_8c.png" alt="" class="float-l img-airport"> -->
+            <h5>航班号</h5>
+            <p>{{passengerDatas?.psgFltno}}</p>
+        </div>
+        <div class="g-2-5">
+            <h5>航站楼</h5>
+            <p>{{passengerDatas?.dfTerminal}}</p>
+        </div>
+        <div class="g-2-5">
+            <h5>航班日期</h5>
+            <p>{{passengerDatas?.psgFltdt}}</p>
+        </div>
+    </div>
+    <div class="con-info-part flex flex-justify">
+        <div class="g-5">
+            <h5>始发站</h5>
+            <p>{{passengerDatas?.psgOrigin}}({{passengerDatas?.psgOriginEn}})</p>
+        </div>
+        <div class="g-5">
+            <h5>目的站</h5>
+            <p>{{passengerDatas?.psgDest}}({{passengerDatas?.psgDestEn}})</p>
+        </div>
+    </div>
+    <div class="con-info-part flex flex-justify">
+        <div class="g-5">
+            <h5>座位号</h5>
+            <p>{{passengerDatas?.psgSeatno}}</p>
+        </div>
+        <div class="g-5">
+            <h5>登机号</h5>
+            <p>{{passengerDatas?.psgBoardno}}</p>
+        </div>
+    </div>
+    <div class="con-info-part flex flex-justify border-n">
+        <div class="g-5">
+            <h5>登机口</h5>
+            <p>{{passengerDatas?.gate}}</p>
+        </div>
+        <div class="g-5">
+            <h5>登机时间</h5>
+            <p>{{passengerDatas?.psgBoardTime}}</p>
+        </div>
+    </div>
+    <h4>验证信息</h4>
+    <div class="con-info-part flex flex-justify">
+        <div class="g-5">
+            <h5>值机柜台</h5>
+            <p>{{passengerDatas?.psgCheckinCounter}}</p>
+        </div>
+        <div class="g-5">
+            <h5>值机时间</h5>
+            <p>{{passengerDatas?.psgCheckinTime}}</p>
+        </div>
+    </div>
+    <div class="con-info-part flex flex-justify border-n">
+        <div class="g-5">
+            <h5>安检通道</h5>
+            <p>{{(passengerDatas?.verifyRecordList.length)?passengerDatas?.verifyRecordList[0].vrLocation:''}}</p>
+        </div>
+        <div class="g-5">
+            <h5>安检时间</h5>
+            <p>{{passengerDatas?.psgVerifyTime}}</p>
+        </div>
+    </div>
+</div>

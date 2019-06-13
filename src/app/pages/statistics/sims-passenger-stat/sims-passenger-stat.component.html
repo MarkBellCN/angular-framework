@@ -1,0 +1,137 @@
+<div class="c-warp flex">
+    <!-- 顶部标题 -->
+    <div class="top-opt flex flex-justify">
+        <div class="title flex flex-left g-3">
+            <h1 class="font-title">旅客统计</h1>
+        </div>
+        <div class="opt-area-button flex flex-right flex-align-c g-7">
+            <button class="but margin-l10 but-print" (click)="getExcel('旅客小时统计信息表.xls',thisUrl)">
+                <i class="opt-print margin-r5"></i>
+                <span>旅客小时导出</span>
+            </button>
+            <button class="but margin-l10 but-print" (click)="getExcel('旅客按天统计信息表.xls',thisUrl2)">
+                <i class="opt-print margin-r5"></i>
+                <span>导出表格</span>
+            </button>
+            <button skipIndex class="but margin-l10">
+                <i class="opt-home margin-r5"></i>
+                <span>首页</span>
+            </button>
+            <button class="but margin-l10" (click)="initChart()">
+                <i class="opt-refresh margin-r5"></i>
+                <span>刷新</span>
+            </button>
+        </div>
+    </div>
+    <div class="top-sch flex flex-justify">
+        <div class="sch-area-input flex flex-left g-7">
+            <div class="g-2 text-left">
+                <span class="margin-r10">航站楼</span>
+                <nz-select nzShowSearch nzAllowClear class="g-5 sch-in" [nzPlaceHolder]="'全部'" [(ngModel)]="statisticsService.pageQuery.pterminal" enterSearch>
+                    <nz-option *ngFor="let item of statisticsService.commonEnum.terminalListEnum.DATAS" [nzLabel]="item.label" [nzValue]="item.value">
+                    </nz-option>
+                </nz-select>
+            </div>
+            <div class="g-3 text-left">
+                <span class="margin-r10 float-l margin-t5">航班日期</span>
+                <nz-date-picker class="g-6 float-l indent" [nzFormat]="'YYYY-MM-DD'" [nzPlaceHolder]="'选择日期'" [(ngModel)]="statisticsService.pageQuery.pstatDate"></nz-date-picker>
+            </div>
+        </div>
+        <div class="sch-area-button flex flex-right g-2-5">
+            <button class="but margin-l10" (click)="resetQueryData()">重置</button>
+            <button class="but but-yellow margin-l20" enterSearchEvent (click)="searchQueryData()">查询</button>
+        </div>
+    </div>
+    <div class="bottom-body flex">
+        <div class="c-table padding-t20 margin-t30">
+            <div class="flex flex-center margin-t20 margin-b20">
+                <ul class="flex flex-justify g-6">
+                    <li class="g-2">
+                        <div class="circle circle-color1">
+                            <h4><i class="icon icon-counter"></i></h4>
+                        </div>
+                        <p>{{(passengerDayStatData?.checkinNum)?passengerDayStatData?.checkinNum:'0'}}</p>
+                        <div>值机数</div>
+                    </li>
+                    <li class="g-2">
+                        <div class="circle circle-color2">
+                            <h4><i class="icon icon-security"></i></h4>
+                        </div>
+                        <p>{{(passengerDayStatData?.verifyNum)?passengerDayStatData?.verifyNum:'0'}}</p>
+                        <div>安检数</div>
+                    </li>
+                    <li class="g-2">
+                        <div class="circle circle-color3">
+                            <h4><i class="icon icon-ariport"></i></h4>
+                        </div>
+                        <p>{{(passengerDayStatData?.boardNum)?passengerDayStatData?.boardNum:'0'}}</p>
+                        <div>登机数</div>
+                    </li>
+                    <li class="g-2">
+                        <div class="circle circle-color4">
+                            <h4><i class="icon icon-control"></i></h4>
+                        </div>
+                        <p>{{(passengerDayStatData?.suspectNum)?passengerDayStatData?.suspectNum:'0'}}</p>
+                        <div>发现布控数</div>
+                    </li>
+                    <li class="g-2 border-n">
+                        <div class="circle circle-color5">
+                            <h4><i class="icon icon-idcardmode"></i></h4>
+                        </div>
+                        <p>{{(passengerDayStatData?.idcardNum)?passengerDayStatData?.idcardNum:'0'}}</p>
+                        <div>一证放行人数</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex flex-center">
+                <div class="flex flex-justify  padding-t20 margin-t10" style="border-top: 1px solid #d9d9d9;width: 95%;">
+                    <div class="flex flex-justify">
+                        <h3>旅客高峰小时统计</h3>
+                        <div>
+                            <span class="hour-stat-legend margin-l30" style="background-color: #04A7B8;width:12px;height: 12px;display: inline-block"></span>
+                            <span class="margin-l20">值机数</span>
+                            <span class="hour-stat-legend margin-l20" style="background-color: #618087;width:12px;height: 12px;display: inline-block;"></span>
+                            <span class="margin-l20">安检数</span>
+                            <span class="hour-stat-legend margin-l20" style="background-color: #EC9F5A;width:12px;height: 12px;display: inline-block;"></span>
+                            <span class="margin-l20">登机数</span>
+                        </div>
+                    </div>
+                    <div class="stat-range">
+                        <ui-selectbutton class="flex flex-right g-10" [styleClass]="'tab but-shad flex flex-right g-9'" [model]="statisticsService.commonEnum.statRangeEnum.DATAS" [(selectValue)]=" psgHourStatRange" (selectValueChange)="psgHourStatRangeClick()" enterSearch>
+                        </ui-selectbutton>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas-wrap">
+                <div echarts [options]="passengerHourStatOption" class="flight-hour-stat-data" (chartInit)="initPsgHourStatIntance($event)"></div>
+            </div>
+        </div>
+        <div class="c-table padding-t20 margin-t20 margin-b20">
+            <div class="margin-l30 margin-r30 padding-b20">
+                <nz-table #nzTable [nzIsPagination]="false" [nzSize]="'middle'" [nzDataSource]="passengerlistByT">
+                    <thead nz-thead>
+                        <tr>
+                            <th nz-th>
+                                <span style="padding-left: 100px;">分类</span>
+                            </th>
+                            <th nz-th>
+                                <span style="padding-left: 100px;">安检旅客数</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody nz-tbody>
+                        <tr nz-tbody-tr *ngFor="let item of passengerlistByT">
+                            <td nz-td>
+                                <span style="padding-left: 100px;">{{item.label}}</span>
+                            </td>
+                            <td nz-td>
+                                <span style="padding-left: 100px;">{{item.value}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </div>
+        </div>
+    </div>
+
+</div>

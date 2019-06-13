@@ -1,0 +1,64 @@
+<div *ngIf="verifyrecordList==null||verifyrecordList.length==0" class="text-c">
+    <p>该旅客暂无{{title}}</p>
+</div>
+<div *ngIf="verifyrecordList&&verifyrecordList.length&&!isShowInfo">
+    <p class="list-title">
+        <i class="icon-person"></i><i class="list-title-name">{{data.psgNameCh}} </i>的{{title}}，共{{verifyrecordList?.length}}条:
+    </p>
+    <!-- 验证记录列表 -->
+    <nz-table #nzTable [nzIsPagination]="false" [nzSize]="'middle'" [nzDataSource]="verifyrecordList">
+        <thead nz-thead>
+            <tr>
+                <th nz-th>
+                    <span>序号</span>
+                </th>
+                <th nz-th>
+                    <span>航班号</span>
+                </th>
+                <th nz-th>
+                    <span>航班日期</span>
+                </th>
+                <th nz-th>
+                    <span>登机号</span>
+                </th>
+                <th nz-th>
+                    <span>座位号</span>
+                </th>
+                <th nz-th>
+                    <span></span>
+                </th>
+            </tr>
+        </thead>
+        <tbody nz-tbody>
+            <tr nz-tbody-tr *ngFor="let item of verifyrecordList;index as i" (click)="toVerifyrecordInfo(item)">
+                <td nz-td>
+                    <span>{{i+1}}</span>
+                </td>
+                <td nz-td>
+                    <span>{{item.vrFltno}}</span>
+                </td>
+                <td nz-td>
+                    <span>{{item.vrFltdt}}</span>
+                </td>
+                <td nz-td>
+                    <span>{{item.vrBoardno}}</span>
+                </td>
+                <td nz-td>
+                    <span>{{item.vrSeatno}}</span>
+                </td>
+                <td nz-td>
+                    <span><i class="anticon anticon-right"></i></span>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>
+
+
+<!-- 登机记录详情 -->
+<div *ngIf="isShowInfo">
+    <div class="datails-title" (click)="toBackList()">
+        <a href="javascript:;"><i class="anticon anticon-left"></i>返回列表</a>
+    </div>
+    <app-verify-record-save [data]="verifyrecordInfo"></app-verify-record-save>
+</div>

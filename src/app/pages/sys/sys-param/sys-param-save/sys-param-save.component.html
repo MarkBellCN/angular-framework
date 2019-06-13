@@ -1,0 +1,45 @@
+<div class="flex flex-align-c flex-justify g-9 margin-a margin-t20">
+    <span class="font-xxxl">{{title}}</span>
+    <div class="flex">
+        <button class="but margin-r20 but-mm" (click)="dataTableService.sidebarClose()">取消</button>
+        <button *ngIf="desc!='detail'" class="but but-yellow but-mm" [disabled]="formModel.invalid||!dataTableService.saveButton" (click)="dataTableService.save(formModel.value,desc)">确定
+  </button>
+    </div>
+</div>
+
+<div class="panel-cont margin-t10">
+    <form [formGroup]="formModel" class="relative">
+        <div *ngIf="desc=='detail'" class="sidebar-mask"></div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">参数名称
+                    <span *ngIf="formModel.hasError('required',['sysParamName'])" class="font-strong font-tip">*必填项</span>
+                    <span *ngIf="formModel.hasError('uniqueValidators',['sysParamName'])" class="font-strong font-tip">参数名称已存在</span>
+                </p>
+                <input type="text" class="text-in g-10" formControlName="sysParamName" [class.has-error]="!formModel.controls['sysParamName'].valid&&formModel.controls['sysParamName'].touched" placeholder="输入参数名称" maxlength="25" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">参数分类
+                    <span *ngIf="formModel.hasError('required',['sysClassify'])" class="font-strong font-tip">*必填项</span>
+                </p>
+                <input type="text" class="text-in g-10" formControlName="sysClassify" [class.has-error]="!formModel.controls['sysClassify'].valid&&formModel.controls['sysClassify'].touched" placeholder="输入参数分类" maxlength="25" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">参数值
+                    <span *ngIf="formModel.hasError('required',['sysParamValue'])" class="font-strong font-tip">*必填项</span>
+                </p>
+                <input type="text" class="text-in g-10" formControlName="sysParamValue" [class.has-error]="!formModel.controls['sysParamValue'].valid&&formModel.controls['sysParamValue'].touched" placeholder="输入参数值" maxlength="30" />
+            </div>
+        </div>
+        <div class="flex g-9 textarea margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">备注</p>
+                <textarea class="g-10 text-in" [rows]="3" formControlName="sysRemark" maxlength="120"></textarea>
+            </div>
+        </div>
+    </form>
+</div>

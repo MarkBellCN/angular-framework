@@ -1,0 +1,39 @@
+<div class="mask-edit-password">
+    <div class="alert-box">
+        <div class="alert margin-a margin-b20 flex g-10 flex-justify flex-align-c">
+            <div class="font-title margin-b10 margin-l20">{{title}}</div>
+            <div class="flex margin-b10">
+                <button class="but margin-r20" href="javascript:;" (click)="onCancle()">取消</button>
+                <button *ngIf="desc==commonEnum.descEnum.UPTPSD.value" class="but but-cyan margin-r20" [disabled]="passwordOld.invalid||passwordNew.invalid||passwordConfirm.invalid" (click)="onSubmit()">确定
+        </button>
+                <button *ngIf="desc==commonEnum.descEnum.RESETPSD.value" class="but but-cyan margin-r20" [disabled]="passwordNew.invalid||passwordConfirm.invalid" (click)="onSubmit()">确定
+        </button>
+            </div>
+        </div>
+        <div class="margin-a  margin-t30 g-6">
+            <div *ngIf="desc!=commonEnum.descEnum.RESETPSD.value">
+                <span class="font-gray">原密码
+          <font *ngIf="passwordOld.hasError('required')" class="font-cyan">必输项</font>
+          <font *ngIf="!passwordOld.hasError('required')&&secretError" class="font-cyan">原始密码错误，请重新输入！</font>
+        </span>
+                <input inputToPassword type="text" [formControl]="passwordOld" [class.has-error]="!passwordOld.valid&&passwordOld.touched" name="passwordOld" placeholder="请输入旧密码" class="text-in margin-a margin-t10 margin-b20 g-10">
+
+            </div>
+            <div>
+                <span class="font-gray">新密码
+          <font *ngIf="passwordNew.hasError('required')" class="font-cyan">必输项</font>
+          <font *ngIf="passwordNew.hasError('pattern')" class="font-cyan">输入6-18位字母数字</font>
+        </span>
+                <input inputToPassword type="text" [formControl]="passwordNew" [class.has-error]="!passwordNew.valid&&passwordNew.touched" name="passwordNew" placeholder="输入新密码" class="text-in margin-a margin-t10 margin-b20 g-10">
+                <span class="font-gray">确认新密码
+          <font *ngIf="passwordConfirm.hasError('required')" class="font-cyan">必输项</font>
+          <font *ngIf="passwordConfirm.hasError('pattern')" class="font-cyan">输入6-18位字母数字</font>
+          <font
+            *ngIf="!passwordConfirm.hasError('required')&&!passwordConfirm.hasError('pattern')&&passwordConfirm.hasError('passwordEqual')"
+            class="font-red">两次输入密码不一致</font>
+        </span>
+                <input inputToPassword type="text" [formControl]="passwordConfirm" [class.has-error]="!passwordConfirm.valid&&passwordConfirm.touched" name="passwordConfirm" placeholder="密码确认" class="text-in margin-a margin-t10 margin-b10 g-10">
+            </div>
+        </div>
+    </div>
+</div>

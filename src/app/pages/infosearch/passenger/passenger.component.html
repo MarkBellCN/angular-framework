@@ -1,0 +1,192 @@
+<div class='c-warp flex' keyEventSelectData>
+
+    <div class="top-opt flex flex-justify">
+        <div class="title flex flex-left g-3">
+            <h1 class="font-title">旅客信息查询</h1>
+        </div>
+        <div class="opt-area-button flex flex-right flex-align-c g-7">
+            <button class="but margin-l10 but-print" (click)="dataTableService.exportExcelByTable(dataTableService.dataList,'旅客信息表.xls')">
+                <i class="opt-print margin-r5"></i>
+                <span>导出本页</span>
+            </button>
+            <button skipIndex class="but margin-l10">
+                <i class="opt-home margin-r5"></i>
+                <span>首页</span>
+            </button>
+            <button class="but margin-l10" (click)="dataTableService.pageRefresh()">
+                <i class="opt-refresh margin-r5"></i>
+                <span>刷新</span>
+            </button>
+        </div>
+    </div>
+    <!--  查询条件部分 -->
+    <div class="top-sch flex flex-justify">
+
+        <div class="sch-area-input flex flex-left g-8" *ngIf="!dataTableService.isSchRangeOpen">
+            <div class="g-2 text-left">
+                <span class="margin-r10">航班号</span>
+                <input [(ngModel)]="dataTableService.pageQuery.data.psgFltno" (ngModelChange)="dataTableService.pageQuery.data.psgFltno=$event.toString().toUpperCase()" enterSearch class="text-in g-5 sch-in" placeholder="航班号" />
+            </div>
+            <div class="g-3 text-left">
+                <span class="margin-r10 float-l margin-t5">航班日期</span>
+                <nz-range-picker class="g-7 sch-in float-l" [(ngModel)]="dataTableService.pageQuery.data.fltdts" [nzPlaceHolder]="'选择日期'" [nzAllowClear]="false"></nz-range-picker>
+            </div>
+            <div class="g-4 text-left">
+                <span class="margin-r10 float-l margin-t5">验证时间</span>
+                <nz-range-picker [nzValueDefault]="dataTableService.pageQuery.data.fltdts" [nzMode]="'time'" class="g-7 sch-in float-l" [(ngModel)]="dataTableService.pageQuery.data.qvrTimes" [nzPlaceHolder]="'选择日期'" nzShowTime></nz-range-picker>
+            </div>
+        </div>
+        <!--  查询条件折叠部分 -->
+        <div class="sch-area-input-range flex flex-left g-8" *ngIf="dataTableService.isSchRangeOpen">
+            <div class="g-2-5 text-left">
+                <p class="sch-title">按航班信息查询：</p>
+                <div class="sch-item flex">
+                    <span class="sch-item-title g-3 margin-r10">航班号</span>
+                    <input [(ngModel)]="dataTableService.pageQuery.data.psgFltno" (ngModelChange)="dataTableService.pageQuery.data.psgFltno=$event.toString().toUpperCase()" enterSearch class="text-in g-7 sch-in" placeholder="航班号" />
+                </div>
+                <div class="sch-item flex">
+                    <span class="sch-item-title g-3 margin-r10">航班日期</span>
+                    <nz-range-picker class="sch-item-content g-7 sch-in" [(ngModel)]="dataTableService.pageQuery.data.fltdts" [nzPlaceHolder]="'选择日期'" [nzAllowClear]="false"></nz-range-picker>
+                </div>
+                <div class="sch-item flex">
+                    <span class="sch-item-title g-3 margin-r10">始发站</span>
+                    <nz-select nzShowSearch nzAllowClear class="g-7 sch-in" [nzPlaceHolder]="'始发站'" [(ngModel)]="dataTableService.pageQuery.data.origin">
+                        <nz-option *ngFor="let item of dataTableService.commonEnum.airportListEnum.DATAS" [nzLabel]="item.label" [nzValue]="item.value">
+                        </nz-option>
+                    </nz-select>
+                </div>
+                <div class="sch-item flex">
+                    <span class="sch-item-title g-3 margin-r10">目的站</span>
+                    <nz-select nzShowSearch nzAllowClear class="g-7 sch-in" [nzPlaceHolder]="'目的站'" [(ngModel)]="dataTableService.pageQuery.data.dest">
+                        <nz-option *ngFor="let item of dataTableService.commonEnum.airportListEnum.DATAS" [nzLabel]="item.label" [nzValue]="item.value">
+                        </nz-option>
+                    </nz-select>
+                </div>
+            </div>
+            <div class="g-2-5 text-left">
+                <p class="sch-title">按旅客信息查询：</p>
+                <div class="sch-item flex">
+                    <span class="sch-item-title g-3 margin-r10">旅客姓名</span>
+                    <input [(ngModel)]="dataTableService.pageQuery.data.name" enterSearch class="text-in g-7 sch-in" placeholder="旅客姓名" />
+                </div>
+                <div class="sch-item flex">
+                    <span class="sch-item-title g-3 margin-r10">证件号</span>
+                    <input [(ngModel)]="dataTableService.pageQuery.data.psgIdcardNo" enterSearch class="text-in g-7 sch-in" placeholder="证件号" />
+                </div>
+                <div class="sch-item flex">
+                    <span class="sch-item-title g-3 margin-r10">登机号</span>
+                    <input [(ngModel)]="dataTableService.pageQuery.data.psgBoardno" enterSearch class="text-in g-7 sch-in" placeholder="登机号" />
+                </div>
+                <div class="sch-item flex">
+                    <span class="sch-item-title g-3 margin-r10">座位号</span>
+                    <input [(ngModel)]="dataTableService.pageQuery.data.psgSeatno" enterSearch class="text-in g-7 sch-in" (ngModelChange)="dataTableService.pageQuery.data.psgSeatno=$event.toString().toUpperCase()" placeholder="座位号" />
+                </div>
+            </div>
+            <div class="g-3-5 text-left">
+                <p class="sch-title">按其他信息查询：</p>
+                <div class="sch-item flex">
+                    <span class="sch-item-title g-3 margin-r10">验证时间</span>
+                    <nz-range-picker class="sch-item-content g-7 sch-in" [nzValueDefault]="dataTableService.pageQuery.data.fltdts" [nzMode]="'time'" [(ngModel)]="dataTableService.pageQuery.data.qvrTimes" [nzPlaceHolder]="'选择日期'" nzShowTime></nz-range-picker>
+                </div>
+                <div class="sch-item flex">
+                    <span class="sch-item-title g-3 margin-r10">航站楼</span>
+                    <nz-select nzShowSearch nzAllowClear class="g-7 sch-in" [nzPlaceHolder]="'航站楼'" [(ngModel)]="dataTableService.pageQuery.data.dfTerminal" enterSearch>
+                        <nz-option *ngFor="let item of dataTableService.commonEnum.terminalListEnum.DATAS" [nzLabel]="item.label" [nzValue]="item.value">
+                        </nz-option>
+                    </nz-select>
+                </div>
+                <div class="sch-item flex">
+                    <span class="sch-item-title g-3 margin-r10">安检通道</span>
+                    <nz-select nzShowSearch nzAllowClear class="g-7 sch-in" [nzPlaceHolder]="'安检通道'" [(ngModel)]="dataTableService.pageQuery.data.chnNo">
+                        <nz-option *ngFor="let item of dataTableService.commonEnum.channelListEnum.DATAS" [nzLabel]="item.label" [nzValue]="item.value">
+                        </nz-option>
+                    </nz-select>
+                </div>
+                <div class="sch-item flex">
+                    <span class="sch-item-title g-3 margin-r10">过站旅客</span>
+                    <nz-select nzShowSearch nzAllowClear class="g-7 sch-in" [nzPlaceHolder]="'是否过站旅客'" [(ngModel)]="dataTableService.pageQuery.data.psgViaflag" enterSearch>
+                        <nz-option *ngFor="let item of dataTableService.commonEnum.yesOrNoEnum.DATAS" [nzLabel]="item.label" [nzValue]="item.value">
+                        </nz-option>
+                    </nz-select>
+                </div>
+            </div>
+        </div>
+
+        <div class="sch-area-button flex flex-right g-2-5">
+            <a href="javascript:;" class="range-menu" (click)="dataTableService.isSchRangeOpen=!dataTableService.isSchRangeOpen">{{dataTableService.isSchRangeOpen ?
+        "收起":"展开"}}<i [ngClass]="dataTableService.isSchRangeOpen?'anticon anticon-up':'anticon anticon-down'"></i></a>
+            <button class="but margin-l10" (click)="dataTableService.initPageQuery()">重置</button>
+            <button class="but but-yellow margin-l20" enterSearchEvent (enterSearch)="dataTableService.getDataList()" (click)="dataTableService.getDataList()">查询</button>
+        </div>
+    </div>
+    <div class="con-table-title">
+        <div class="flex flex-justify">
+            <div class="flex flex-left g-4">
+                <span class="font-title page-info">共查询到&nbsp;
+                <span class="font-title font-cyan">{{dataTableService.totalRecords?dataTableService.totalRecords:'0'}}</span> &nbsp;条记录&nbsp; &nbsp;共{{dataTableService.getPageTotal()}}页，每页显示 {{dataTableService.pageQuery.pageSize}} 条&nbsp;
+                </span>
+            </div>
+            <div class="flex flex-right g-6">
+                <button class="but opt-button opt-button-del margin-r10" *ngIf="dataTableService.dataMultiCheckService.checkedNumber>0&&dataTableService.permissionObj[dataTableService.commonEnum.permissionType.DELETE.value]" (click)="dataTableService.deleteMore()" title="删除"><i></i></button>
+                <button class="but opt-button opt-button-add margin-r10" *ngIf="dataTableService.permissionObj[dataTableService.commonEnum.permissionType.ADD.value]" (click)="dataTableService.toAddPage()" title="新增"><i></i></button>
+                <nz-pagination (nzPageIndexChange)="dataTableService.pageIndexChange($event)" [(nzPageIndex)]="dataTableService.pageQuery.pageNum" nzShowQuickJumper nzShowSizeChanger [nzTotal]="dataTableService.totalRecords" [nzPageSizeSelectorValues]="dataTableService.commonEnum.pageSizeSelectorValues.DATA"
+                    [(nzPageSize)]="dataTableService.pageQuery.pageSize" (nzPageSizeChange)="dataTableService.pageSizeChange($event)"></nz-pagination>
+            </div>
+        </div>
+    </div>
+    <!-- 表格主体 -->
+    <div class="con-body flex">
+        <!-- 左侧表格区域 -->
+        <div class="con-info-table-box">
+            <i class="icon con-info-btn" *ngIf="dataTableService.dataList&&dataTableService.dataList.length" [ngClass]="isShowInfo? 'icon-right': 'icon-left'" (click)="toSwitchInfo()"></i>
+            <div class="con-table con-info-table" [ngClass]="dataTableService.dataList&&dataTableService.dataList.length?'border-r':''">
+                <nz-table #nzTable [nzLoading]="dataTableService.loading&&dataTableService.loadlogo" [nzDataSource]="dataTableService.dataList" [nzIsPagination]="false" [nzSize]="'middle'">
+                    <thead nz-thead>
+                        <tr>
+                            <th nz-th *ngFor="let tableField of dataTableService.showTableFields" [ngStyle]="tableField.style" [ngClass]="tableField.sortable?'sortable '+tableField.classTh:' '+tableField.classTh" (click)="dataTableService.thDataSort(tableField.field,false)">
+                                <span>{{tableField.header}}</span>
+                                <nz-table-sort *ngIf="tableField.sortable" [(nzValue)]="tableField.sortValue" (nzValueChange)="dataTableService.dataSort(tableField.field,false)"></nz-table-sort>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody nz-tbody>
+                        <tr nz-tbody-tr *ngFor="let data of nzTable.data" (click)="toInfoPage(data)" [class.active]="data[dataTableService.tableKeyCode]==currentDataList[dataTableService.tableKeyCode]">
+                            <td nz-td *ngFor="let tableField of dataTableService.showTableFields" [ngStyle]="tableField.style" [ngClass]="tableField.classTd">
+                                <span *ngIf="tableField.template">{{dataTableService.colTemplateFunction(tableField,data)}}</span>
+                                <span *ngIf="!tableField.template">{{data[tableField.field]}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </div>
+        </div>
+        <!-- 右侧信息详情 -->
+        <div class="con-info-detail-box flex-left" *ngIf="isShowInfo&&dataTableService.dataList&&dataTableService.dataList.length">
+            <nz-tabset [nzAnimated]="false">
+                <nz-tab>
+                    <ng-template #nzTabHeading>旅客信息</ng-template>
+                    <app-passenger-save [data]="currentDataList"></app-passenger-save>
+                </nz-tab>
+                <nz-tab>
+                    <ng-template #nzTabHeading>登机记录</ng-template>
+                    <app-boardrecord-list [data]="currentDataList"></app-boardrecord-list>
+                </nz-tab>
+                <nz-tab>
+                    <ng-template #nzTabHeading>验证记录</ng-template>
+                    <app-verifyrecord-list [data]="currentDataList"></app-verifyrecord-list>
+
+                </nz-tab>
+                <nz-tab>
+                    <ng-template #nzTabHeading>交运行李</ng-template>
+                    <app-regluggage-list [data]="currentDataList"></app-regluggage-list>
+                </nz-tab>
+                <nz-tab>
+                    <ng-template #nzTabHeading>行李开包</ng-template>
+                    <app-unpack-list [data]="currentDataList"></app-unpack-list>
+                </nz-tab>
+            </nz-tabset>
+
+        </div>
+    </div>
+</div>

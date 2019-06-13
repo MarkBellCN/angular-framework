@@ -1,0 +1,69 @@
+.ui-menu {
+    background-color: transparent;
+}
+
+.ui-sub-menu {
+    background: linear-gradient(#15171A, #15171A);
+    border-radius: 4px;
+}
+
+.ui-menu li {
+    position: relative;
+    width: 100%;
+    color: #959898;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.ui-menu li:hover,
+.ui-menu li:hover a {
+    color: #fff;
+}
+
+.ui-sub-menu li.ant-menu-item-selected,
+.ui-sub-menu li.active,
+.ui-sub-menu li.ant-menu-item-selected a,
+.ui-sub-menu li.active a,
+.ui-sub-menu li:hover a {
+    color: #fff
+}
+
+.ui-menu li.ant-menu-submenu-open,
+.ui-menu li.active,
+.ui-menu li.ant-menu-submenu-open a,
+.ui-menu li.active a {
+    color: #fff;
+}
+
+.ui-menu li a {
+    padding: 12px 0;
+    margin-left: 12px;
+    color: #959898;
+    font-size: 14px;
+}
+
+.ui-sub-menu li a {
+    padding: 12px 0;
+    margin-left: 10px;
+    color: #959898;
+    font-size: 14px;
+}
+
+.ui-sub-menu li .icon-circle {
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #959898;
+}
+
+.ui-sub-menu li.ant-menu-item-selected .icon-circle,
+.ui-sub-menu li.active .icon-circle,
+.ui-sub-menu li:hover .icon-circle {
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}

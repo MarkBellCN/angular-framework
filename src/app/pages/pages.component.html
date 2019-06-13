@@ -1,0 +1,60 @@
+<nz-layout>
+    <nz-sider [nzWidth]="256" [nzBreakpoint]="'xl'" [nzCollapsedWidth]="64" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+        <div class="left-info">
+            <div class="left-menu-title flex flex-justify">
+                <div class="flex flex-left" [ngClass]="!isCollapsed?'text-title':'no-text-title'">
+                    <span class="text-left">{{APP_NAME}}</span>
+                </div>
+                <div class="collapsed-opt flex flex-center">
+                    <button class="collapsed-but" (click)="toggleCollapsed()" [class.menu-uncollapsed]="!isCollapsed" [class.menu-collapsed]="isCollapsed"></button>
+                </div>
+            </div>
+            <div [ngClass]="isCollapsed?'left-menu-conent-isCollapsed':'left-menu-conent'">
+                <ui-menu [(isCollapsed)]="isCollapsed"></ui-menu>
+            </div>
+            <div [ngClass]="isCollapsed?'left-user-info-collapsible':'left-user-info'">
+                <div class="user-info" (click)="userInfoBoxChange()">
+                    <div class="user-logo">
+                        <span class="user-logo-text">{{userDetails?.showName?userDetails.showName.substring(0,1):''}}</span>
+                        <div class="user-info-box" [class.show]="userInfoBox">
+                            <div class="arrow"></div>
+                            <div class="user-info-box-top">
+                                <div class="user-info-box-logo">{{userDetails?.showName?userDetails.showName.substring(0,1):''}}</div>
+                                <h3 class="font-center font-overflow-hidden font-xxl margin-t20">{{userDetails?.showName}}</h3>
+                                <div class="welcome_wd">您好，欢迎登录！</div>
+                            </div>
+                            <div class="flex g-10">
+                                <button class="but g-3-3" (click)="setparams()"><i class="icon icon-setting"></i>设置</button>
+                                <button class="but g-3-3" (click)="uptpsd()"><i class="icon icon-unlock"></i>修改密码</button>
+                                <button class="but g-3-3" (click)="logout()"><i class="icon icon-reply"></i>退出</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-name" [title]="userDetails.showName">{{userDetails?.showName}}<i class="fa fa-angle-right"></i>
+                    </div>
+                </div>
+                <div class="msg-info">
+                    <div class="msg-logo" (click)="toMessagePage()">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nz-sider>
+    <nz-layout>
+        <app-message [(showMessage)]="showMessage"></app-message>
+        <nz-content>
+            <router-outlet></router-outlet>
+        </nz-content>
+    </nz-layout>
+</nz-layout>
+<nz-modal [nzVisible]="isVisible" [nzTitle]="modalTitle.label" [nzContent]="modalContent" (nzOnCancel)="handleCancel($event)" (nzOnOk)="handleOk($event)" class="nzModal-box">
+    <ng-template #modalContent>
+        <div class="flex">
+            <span class="title-params">航站楼：</span>
+            <nz-select nzAllowClear class="g-8 sch-in" [nzPlaceHolder]="'所有航站楼'" [(ngModel)]="setparamsTerminal">
+                <nz-option *ngFor="let item of dataTableService.commonEnum.terminalListEnum.DATAS" [nzLabel]="item.label" [nzValue]="item.value">
+                </nz-option>
+            </nz-select>
+        </div>
+    </ng-template>
+</nz-modal>

@@ -1,0 +1,283 @@
+.c-message {
+    position: absolute;
+    height: 100%;
+    z-index: 2;
+    background-color: #f8f8f8;
+    box-shadow: 1px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.c-message-left-list {
+    position: absolute;
+    width: 320px;
+    height: 100%;
+    background-color: #fff;
+    border-right: 1px solid #ccc;
+}
+
+.mess-list-top {
+    height: 54px;
+    padding: 16px 20px 16px 20px;
+    font-size: 16px;
+    justify-content: space-between;
+}
+
+.mess-list-top .mess-top-title {
+    font-size: 20px;
+    color: #4d4d4d;
+}
+
+.mess-list-top .mess-close {
+    width: 24px;
+    height: 24px;
+    margin-top: 4px;
+}
+
+.mess-list-top .mess-close i {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+}
+
+:host ::ng-deep .ant-input-affix-wrapper {
+    padding: 16px 20px 10px 20px;
+}
+
+:host ::ng-deep .ant-input-affix-wrapper .ant-input-suffix {
+    color: #666;
+    right: 27px;
+    top: 32px;
+}
+
+:host ::ng-deep .ant-input {
+    padding: 4px 7px;
+    height: 30px;
+    background-color: #eee;
+    border: none;
+    outline: none;
+}
+
+:host ::ng-deep .ant-input-search-icon {
+    font-size: 16px;
+}
+
+.mess-icon {
+    float: left;
+    width: 40px;
+    height: 40px;
+    /* background-color: #cdedf1; */
+    background-color: #dcf6f9;
+    border-radius: 100%;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    color: #04a7b8;
+}
+
+.mess-content ul {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 300px);
+    overflow-y: auto;
+}
+
+.mess-content ul li {
+    height: 60px;
+    width: 100%;
+}
+
+.mess-content ul li:hover,
+.mess-content ul li.active {
+    /* background-color: #cdedf1; */
+    background-color: #dcf6f9;
+    transition: all 0.4s;
+}
+
+.mess-content ul li:hover .mess-icon,
+.mess-content ul li.active .mess-icon {
+    background-color: #04a7b8;
+    color: #fff;
+    transition: all 0.4s;
+}
+
+.mess-content ul li .mess-item-box {
+    padding: 10px 20px;
+}
+
+.mess-content-text {
+    width: 100%;
+    font-size: 14px;
+    color: #999;
+}
+
+.mess-content-text h4 {
+    color: #666;
+    font-size: 14px;
+}
+
+.mess-content-text h4 span {
+    font-size: 12px;
+    color: #999;
+}
+
+.mess-content-text p {
+    font-size: 12px;
+    color: #999;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mess-content-text p span {
+    color: #ec9f5a;
+}
+
+.c-message .mess-new {
+    width: 100%;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.c-message .mess-pagination {
+    width: 100%;
+    padding: 20px;
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+}
+
+.c-message .mess-new button {
+    width: 100%;
+    height: 30px;
+    background-color: #04a7b8;
+    color: #fff;
+    font-size: 14px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+
+/* 消息详情界面 */
+
+.c-message-right-detail {
+    width: 400px;
+    margin-left: 320px;
+    background: linear-gradient(#ebeeef, #ffffff);
+}
+
+.c-message-right-detail .mess-detail-top {
+    height: 84px;
+    padding: 20px 20px 24px 20px;
+}
+
+.c-message-right-detail .mess-detail-top span {
+    font-size: 16px;
+    color: #666;
+    line-height: 40px;
+}
+
+.c-message-right-detail .mess-detail-top button {
+    width: 98px;
+    height: 30px;
+    color: #04a7b8;
+    border: 1px solid #04a7b8;
+    /* background-color: #cdedf1; */
+    background-color: #dcf6f9;
+    border-radius: 4px;
+    font-size: 14px !important;
+    line-height: 30px;
+    text-align: center;
+    margin-top: 4px;
+}
+
+.c-message-right-detail .mess-detail-content {
+    margin: 0 20px;
+}
+
+.mess-detail-content {
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.mess-detail-content div {
+    padding: 20px;
+}
+
+.mess-detail-content h4 {
+    font-size: 16px;
+    color: #444;
+}
+
+.mess-detail-content .mess-time {
+    font-size: 12px;
+    color: #999;
+}
+
+.mess-detail-content .mess-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+}
+
+
+/* tab栏切换 */
+
+:host .tabs-bar {
+    height: 30px;
+    border-bottom: 1px solid #ccc;
+}
+
+:host .tabs-bar .tabs-nav {
+    display: inline-block;
+    height: 30px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%)!important;
+}
+
+:host ::ng-deep .tabs-bar .tabs-nav .tabs-tab a {
+    float: left;
+    width: 100px;
+    color: #666;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 30px;
+    position: relative;
+}
+
+:host ::ng-deep .tabs-nav .tabs-tab a.active,
+:host ::ng-deep .tabs-nav .tabs-tab a:hover {
+    color: #04a7b8;
+}
+
+:host ::ng-deep .tabs-nav a.active:before,
+:host ::ng-deep .tabs-nav .tabs-tab a:hover:before {
+    display: table;
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: #04a7b8;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    z-index: 1;
+}
+
+:host ::ng-deep .tabs-nav .tabs-tab a i {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+    margin-top: -2px;
+}
+
+
+/* 日期选择框 */
+
+:host ::ng-deep .ant-calendar-picker-input {
+    text-indent: 0;
+}

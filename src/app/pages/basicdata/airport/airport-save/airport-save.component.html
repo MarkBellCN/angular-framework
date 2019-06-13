@@ -1,0 +1,69 @@
+<div class="flex flex-align-c flex-justify g-9 margin-a margin-t20">
+    <span class="font-xxxl">{{title}}</span>
+    <div class="flex">
+        <button class="but margin-r20 but-mm" (click)="dataTableService.sidebarClose()">取消</button>
+        <button *ngIf="desc!='detail'" class="but but-yellow but-mm" [disabled]="formModel.invalid||!dataTableService.saveButton" (click)="dataTableService.save(formModel.value,desc)">确定
+    </button>
+    </div>
+</div>
+
+<div class="panel-cont margin-t10">
+    <form [formGroup]="formModel" class="relative">
+        <div *ngIf="desc=='detail'" class="sidebar-mask"></div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">属性
+                    <span *ngIf="formModel.hasError('required',['arptAttr'])" class="font-strong font-tip">*必填项</span>
+                </p>
+                <ui-selectbutton class="flex flex-center g-10" [styleClass]="'tab but-shad flex flex-center g-10'" formControlName="arptAttr" [model]="dataTableService.commonEnum.airportAttrEnum.INPUTDATAS"></ui-selectbutton>
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">机场三字码
+                    <span *ngIf="formModel.hasError('required',['arptCode3'])" class="font-strong font-tip">*必填项</span>
+                    <span *ngIf="formModel.hasError('pattern',['arptCode3'])" class="font-strong font-tip">必须输入三位大写字母</span>
+                    <span *ngIf="formModel.hasError('uniqueValidators',['arptCode3'])" class="font-strong font-tip">三字码码已存在</span>
+                </p>
+                <input type="text" maxlength="3" class="text-in g-10" formControlName="arptCode3" [readonly]="desc==dataTableService.commonEnum.descEnum.UPDATE.value" [class.has-error]="!formModel.controls['arptCode3'].valid&&formModel.controls['arptCode3'].touched"
+                    placeholder="输入机场三字码" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">中文简称
+                    <span *ngIf="formModel.hasError('required',['arptBriefCh'])" class="font-strong font-tip">*必填项</span>
+                </p>
+                <input type="text" maxlength="15" class="text-in g-10" formControlName="arptBriefCh" [class.has-error]="!formModel.controls['arptBriefCh'].valid&&formModel.controls['arptBriefCh'].touched" placeholder="输入中文简称" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">英文简称
+                </p>
+                <input type="text" maxlength="15" class="text-in g-10" formControlName="arptBriefEn" [class.has-error]="!formModel.controls['arptBriefEn'].valid&&formModel.controls['arptBriefEn'].touched" placeholder="输入英文简称" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">中文名称</p>
+                <input type="text" maxlength="25" class="text-in g-10" formControlName="arptNameCh" [class.has-error]="!formModel.controls['arptNameCh'].valid&&formModel.controls['arptNameCh'].touched" placeholder="输入中文全称" />
+            </div>
+        </div>
+
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">英文名称
+                </p>
+                <input type="text" maxlength="25" class="text-in g-10" formControlName="arptNameEn" [class.has-error]="!formModel.controls['arptNameEn'].valid&&formModel.controls['arptNameEn'].touched" placeholder="输入英文全称" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">所在城市
+                </p>
+                <input type="text" maxlength="10" class="text-in g-10" formControlName="arptCity" placeholder="输入所在城市" />
+            </div>
+        </div>
+    </form>
+</div>

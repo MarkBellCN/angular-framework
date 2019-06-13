@@ -1,0 +1,255 @@
+.bg-blues {
+    background: #03a8b7;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+.login-box {
+    width: 360px;
+    height: 440px;
+    padding: 35px 0 20px 40px;
+    background: -webkit-linear-gradient(to bottom, #d0eef2 0%, #fff 40%);
+    background: -o-linear-gradient(to bottom, #d0eef2 0%, #fff 40%);
+    background: -moz-linear-gradient(to bottom, #d0eef2 0%, #fff 40%);
+    background: linear-gradient(to bottom, #d0eef2 0%, #fff 40%);
+    line-height: 1.2;
+    border-radius: 8px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, .1);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    z-index: 4;
+}
+
+.login-box h1 {
+    font-size: 64px;
+    color: #04a7b8;
+    font-family: "Microsoft Yahei", SimSun, "Helvetica Neue", Helvetica;
+    font-weight: 200;
+}
+
+.login-box p {
+    font-size: 24px;
+    margin-bottom: 50px;
+}
+
+.login-box input {
+    width: 280px;
+    height: 40px;
+    line-height: 40px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    padding-left: 40px;
+    color: #666;
+    margin-top: 30px;
+    outline: none;
+}
+
+.login-box input[name='username'] {
+    margin-top: 0;
+}
+
+.login-box input[name='username']:focus,
+.login-box input[name='password']:focus {
+    border-color: #04a7b8;
+    background-color: transparent;
+    transition: all .5s;
+}
+
+.login-box input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    background-color: rgb(255, 255, 255) !important;
+    background-image: none !important;
+    -webkit-box-shadow: 0 0 0 1000px #fff inset;
+}
+
+.login-box i.userIcon,
+.login-box i.passwordIcon {
+    width: 24px;
+    height: 24px;
+    display: block;
+    background-position: right center;
+    position: absolute;
+}
+
+.login-box i.passwordIcon {
+    background-image: url(../../../ui-component/img/login_icon_pw.png);
+    left: 50px;
+    top: 268px;
+}
+
+.login-box i.userIcon {
+    background-image: url(../../../ui-component/img/login_icon_user.png);
+    left: 50px;
+    top: 198px;
+}
+
+.login-box input[type='submit'] {
+    height: 42px;
+    line-height: 42px;
+    color: #fff;
+    background: #eeae3f;
+    background-color: #eeae3f;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+    text-indent: 0 !important;
+    letter-spacing: .5em;
+    margin-top: 30px;
+    padding-left: 0;
+}
+
+.login-box input[type='submit']:active {
+    opacity: .8;
+}
+
+.login-box .eff {
+    width: 110px;
+    height: 120px;
+    background: url(../../../ui-component/img/login_corner_color.png) center no-repeat;
+    position: absolute;
+    top: -40px;
+    right: -34px;
+}
+
+.login-box #eye {
+    display: block;
+    width: 40px;
+    height: 20px;
+    border-radius: 3px;
+    background-color: #eee;
+    font-size: 14px;
+    font-style: normal;
+    color: #aaa;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    top: 270px;
+    right: 50px;
+}
+
+.login-box #eye.blue {
+    /* background-color: #cdedf1; */
+    background-color: #dcf6f9;
+    color: #04a7b8;
+}
+
+.login-box .copyright {
+    font-size: 12px;
+    text-indent: 2em;
+    color: #999;
+    margin-top: 38px;
+}
+
+center.footer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    color: #fff;
+    opacity: .6;
+}
+
+.login-box #check {
+    display: none;
+}
+
+input,
+select {
+    outline: none;
+}
+
+@keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1)
+    }
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(1)
+    }
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
+}
+
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+
+.waveWrapperInner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    bottom: -10px;
+}
+
+.bgMiddle {
+    z-index: 0;
+    opacity: 0.6;
+}
+
+.bgBottom {
+    z-index: 1;
+    opacity: 0.9;
+}
+
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+}
+
+.waveMiddle {
+    background-size: 50% 260px;
+    background-image: url(../../../ui-component/img/wave-mid.png);
+}
+
+.waveAnimation .waveMiddle {
+    animation: move_wave 5s linear infinite;
+}
+
+.waveBottom {
+    background-size: 50% 220px;
+    background-image: url(../../../ui-component/img/wave-bot.png);
+}
+
+.waveAnimation .waveBottom {
+    animation: move_wave 10s linear infinite;
+}
+
+.login_mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 5;
+    background: rgba(0, 0, 0, .5);
+    display: block;
+}
+
+.loading_box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    overflow: hidden;
+    z-index: 6;
+}

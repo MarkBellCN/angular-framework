@@ -1,0 +1,479 @@
+.ant-pagination li {
+    height: 30px;
+    line-height: 30px;
+}
+
+.ant-pagination-item-link {
+    height: 30px;
+    border: 1px solid #cccccc !important;
+}
+
+.ant-pagination-item-link:after {
+    line-height: 30px !important;
+}
+
+.ant-pagination-item-active {
+    border: 1px solid #cccccc !important;
+    background-color: #f2f2f2 !important;
+}
+
+.ant-pagination-item {
+    border: 1px solid #cccccc !important;
+}
+
+.ant-pagination-item a {
+    color: #000000 !important;
+}
+
+.ant-pagination-item-active a {
+    color: #000000 !important;
+}
+
+.ant-pagination-options .ant-select-selection--single {
+    height: 30px;
+}
+
+.ant-pagination-options .ant-select-selection--single {
+    height: 30px;
+}
+
+.ant-pagination-options .ant-select-selection__rendered {
+    line-height: 28px;
+}
+
+.ant-pagination-options .ant-pagination-options-quick-jumper input {
+    height: 30px;
+    line-height: 30px;
+}
+
+.ant-menu-inline .ant-menu-item,
+.ant-menu-submenu-vertical .ant-menu-item {
+    height: 36px !important;
+    line-height: 36px !important;
+    width: 100% !important;
+}
+
+.ant-menu-inline .ant-menu-submenu-title,
+.ant-menu-submenu-vertical .ant-menu-submenu-title {
+    height: 56px !important;
+    line-height: 56px !important;
+}
+
+.ant-menu-item-selected {
+    background-color: #04a6b7 !important;
+}
+
+.ant-tree li {
+    text-align: left;
+}
+
+
+/* nz-confirm的样式覆盖 */
+
+.ant-modal {
+    top: 0!important;
+    height: 100%;
+}
+
+.ant-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 540px;
+    /* height: 360px; */
+    border-radius: 8px;
+}
+
+.ant-confirm .ant-modal-body {
+    width: 100%;
+    height: 100%;
+    padding: 20px 30px;
+}
+
+.ant-modal-content .ant-confirm-body {
+    text-align: center;
+}
+
+.ant-confirm-body .ant-confirm-content .icon {
+    display: inline-block;
+    width: 118px;
+    height: 106px;
+    background-color: #04a7b8;
+    margin-bottom: 30px;
+}
+
+.ant-confirm-body .ant-confirm-content .icon.icon-save {
+    background: url(../img/pop_window_success.png) no-repeat;
+}
+
+.ant-confirm-body .ant-confirm-content .icon.icon-multi-delete {
+    background: url(../img/pop_window_warnning.png) no-repeat;
+}
+
+.ant-confirm-body .ant-confirm-content .icon.icon-single-delete {
+    background: url(../img/pop_window_warnning.png) no-repeat;
+}
+
+.ant-btn-lg {
+    border-radius: 4px!important;
+    width: 90px;
+    height: 30px;
+}
+
+
+/* zp树形菜单样式覆盖 */
+
+.ant-tree {
+    height: 300px!important;
+    overflow: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 10px!important;
+}
+
+
+/* 分页 */
+
+.ant-pagination-options .ant-pagination-options-quick-jumper input {
+    text-align: center!important;
+    border-radius: 4px!important;
+}
+
+.ant-pagination li {
+    float: left;
+    border-radius: 4px!important;
+}
+
+.ant-pagination-options-quick-jumper {
+    float: right;
+}
+
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+    border-radius: 4px!important;
+}
+
+
+/* 角色管理下面的下拉选框 */
+
+.ant-select-selection--multiple .ant-select-selection__rendered>ul>li {
+    margin-top: 6px!important;
+}
+
+.ant-select-selection__rendered {
+    line-height: 30px!important;
+}
+
+.ant-select-selection--multiple {
+    min-height: 32px!important;
+    max-height: 86px;
+    overflow: auto;
+}
+
+.ant-select-selection--single {
+    height: 30px!important;
+}
+
+.ant-select-selection {
+    border-radius: 4px!important;
+    background-color: #f8f8f8!important;
+}
+
+.ant-select-selection__placeholder,
+.ant-select-search__field__placeholder {
+    color: #757575 !important;
+}
+
+
+/* table表格样式 */
+
+.ant-table {
+    overflow: auto!important;
+}
+
+.ant-table-middle .ant-table-tbody>tr>td {
+    color: #666;
+    white-space: nowrap;
+}
+
+.ant-table-middle .ant-table-thead>tr>th {
+    color: #999;
+    white-space: nowrap;
+}
+
+.ant-select-selection--multiple .ant-select-selection__choice {
+    background-color: #c3e4e7!important;
+    color: #04a7b8!important;
+}
+
+.ant-table-middle>.ant-table-content>.ant-table-scroll>.ant-table-header>table>.ant-table-thead>tr>th {
+    padding: 6px 8px!important;
+}
+
+.ant-table-middle>.ant-table-content>.ant-table-scroll>.ant-table-body>table>.ant-table-tbody>tr>td {
+    padding: 0 8px!important;
+}
+
+
+/* 日期控件 */
+
+.ant-calendar-picker-input {
+    height: 30px!important;
+    border-radius: 4px!important;
+    border: 1px solid #ccc!important;
+    background-color: #f8f8f8!important;
+    text-indent: 0.8em;
+}
+
+.ant-calendar-picker,
+.ant-calendar-picker-input {
+    width: 100%;
+}
+
+
+/* 上传图片控件 */
+
+.ant-upload-list-picture .ant-upload-list-item,
+.ant-upload-list-picture-card .ant-upload-list-item {
+    border-radius: 4px!important;
+}
+
+.ant-upload.ant-upload-select-picture-card {
+    border-radius: 4px!important;
+    border: 1px solid #ccc!important;
+    background-color: #f8f8f8!important;
+}
+
+.ant-layout {
+    text-align: left!important;
+}
+
+.ant-upload.ant-upload-select-picture-card>.ant-upload {
+    line-height: 54px;
+}
+
+
+/* na-range-picker的样式修改 */
+
+.top-sch .ant-calendar-picker-input {
+    text-indent: 0;
+}
+
+.sch-area-input-range .ant-calendar-picker-clear,
+.ant-calendar-picker-icon {
+    right: 5px!important;
+}
+
+.sch-area-input-range .ant-calendar-range-picker-input {
+    width: 40%;
+}
+
+
+/* nz-transfer穿梭框样式覆盖 */
+
+.ant-transfer-list {
+    border-radius: 4px!important;
+}
+/* .transfer-rule-airline {
+    height: 400px;
+    width: 250px;
+    overflow: hidden;
+} */
+.transfer-rule-airline .ant-transfer-list {
+    height: 300px;
+    width: 170px;
+}
+.transfer-rule-airline .ant-transfer-list-content-item {
+    padding: 7px 7px;
+}
+
+.ant-input {
+    border-radius: 4px!important;
+}
+
+.ant-btn-sm {
+    border-radius: 4px!important;
+}
+
+.ant-transfer-operation .ant-btn {
+    top: 50%;
+    transform: translateY(-100%);
+}
+
+
+/* 旅客信息查询的tabs栏切换 */
+
+.con-info-detail-box .ant-tabs-nav-container-scrolling {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.con-info-detail-box .ant-tabs-bar {
+    margin-bottom: 20px;
+}
+
+.con-info-detail-box .ant-tabs-tab-arrow-show {
+    display: none;
+}
+
+.con-info-detail-box .ant-tabs-nav-container {
+    font-size: 12px;
+}
+
+.con-info-detail-box .ant-tabs-nav .ant-tabs-tab {
+    margin-right: 0;
+    padding: 6px 15px;
+}
+
+
+/* 旅客信息查询的--旅客信息 */
+
+.con-info-detail .ant-tabs-nav-scroll {
+    text-align: center;
+}
+
+.con-info-detail .ant-tabs-bar {
+    border-bottom: none;
+}
+
+.con-info-detail .ant-tabs-nav {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 0 auto;
+}
+
+.con-info-detail .ant-tabs-nav .ant-tabs-tab {
+    width: 120px;
+    color: #666;
+    text-align: center;
+    background-color: #eee;
+}
+
+.con-info-detail .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-tab:nth-child(2) {
+    border-right: 1px solid #ccc;
+}
+
+.con-info-detail .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-tab {
+    border: none;
+    border-radius: 0;
+    margin-right: 0;
+}
+
+.con-info-detail .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-tab:nth-child(2).ant-tabs-tab-active {
+    color: #04a7b8;
+    background-color: #e6f9fb;
+    border-radius: 4px 0 0 4px;
+}
+
+.con-info-detail .ant-tabs.ant-tabs-card>.ant-tabs-bar .ant-tabs-tab:nth-child(3).ant-tabs-tab-active {
+    color: #04a7b8;
+    background-color: #e6f9fb;
+    border-radius: 0 4px 4px 0;
+}
+
+
+/* select框高度设置 */
+
+.ant-select {
+    height: 30px;
+}
+
+
+/* 日期选择框的波浪线 */
+
+.ant-calendar-range-picker-separator {
+    vertical-align: baseline!important;
+}
+
+.top-sch .indent .ant-calendar-picker-input {
+    text-indent: 0.8em;
+}
+
+:root .ant-tree li span.ant-tree-switcher.ant-tree-switcher_close:after {
+    content: "\e61d"!important;
+    font-size: 18px!important;
+    color: #999!important;
+}
+
+:root .ant-tree li span.ant-tree-switcher.ant-tree-switcher_open:after {
+    content: "\e61d"!important;
+    font-size: 18px!important;
+    color: #999!important;
+}
+
+
+/* 点击省略号图标弹出更多的操作 */
+
+
+/* 清除默认样式 */
+
+.ant-popover-placement-rightTop>.ant-popover-content>.ant-popover-arrow {
+    display: none!important;
+}
+
+.ant-popover-inner-content {
+    padding: 0 !important;
+}
+
+.ant-popover-inner {
+    border-radius: 3px!important;
+}
+
+.ant-popover-placement-right,
+.ant-popover-placement-rightTop,
+.ant-popover-placement-rightBottom {
+    padding-left: 0;
+}
+
+.ant-popover-inner-content ul {}
+
+.ant-popover-inner-content ul>li {
+    padding: 6px 10px;
+    font-size: 14px;
+    line-height: 26px;
+}
+
+.ant-popover-inner-content ul>li:hover {
+    background-color: #e6f9fb;
+    border-radius: 3px;
+}
+
+.ant-popover-inner-content ul>li>i.icon {
+    float: left;
+    width: 24px;
+    height: 24px;
+}
+
+.ant-popover-placement-bottom,
+.ant-popover-placement-bottomLeft,
+.ant-popover-placement-bottomRight {
+    padding-top: 0 !important;
+}
+
+.ant-popover-placement-bottomRight>.ant-popover-content>.ant-popover-arrow {
+    display: none;
+}
+
+.ant-table-thead>tr>th:first-child,
+.ant-table-tbody>tr>td:first-child {
+    padding-left: 20px!important;
+}
+
+.ant-table-thead>tr>th.ant-table-selection-column,
+.ant-table-tbody>tr>td.ant-table-selection-column {
+    text-align: center!important;
+    min-width: 62px;
+    width: 62px;
+}
+
+
+/* select样式修改 */
+
+.ant-select-dropdown-menu-item:hover {
+    background-color: #e6f9fb!important;
+}
+
+.ant-select-dropdown-menu-item-active {
+    background-color: #e6f9fb!important;
+}

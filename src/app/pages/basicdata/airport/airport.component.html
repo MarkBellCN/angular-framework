@@ -1,0 +1,98 @@
+<!-- 侧边栏组件 -->
+<ui-sidebar [styleClass]="'c-panel'" [(visible)]="dataTableService.visibleSidebar">
+    <router-outlet></router-outlet>
+</ui-sidebar>
+<div class='c-warp flex'>
+    <div class="mask" [class.show]="dataTableService.sidebarMask"></div>
+
+    <div class="top-opt flex flex-justify">
+        <div class="title flex flex-left g-3">
+            <h1 class="font-title">机场信息管理</h1>
+        </div>
+        <div class="opt-area-button flex flex-right flex-align-c g-7">
+            <button class="but margin-l10" (click)="dataTableService.exportExcel('机场信息表.xls')">
+        <i class="opt-print margin-r5"></i>
+        <span>导出</span>
+      </button>
+            <button skipIndex class="but margin-l10">
+        <i class="opt-home margin-r5"></i>
+        <span>首页</span>
+      </button>
+            <button class="but margin-l10" (click)="dataTableService.pageRefresh()">
+        <i class="opt-refresh margin-r5"></i>
+        <span>刷新</span>
+      </button>
+        </div>
+    </div>
+    <div class="top-sch flex flex-justify">
+        <div class="sch-area-input flex flex-left g-7">
+            <div class="g-2 text-left">
+                <span class="margin-r10">三字码</span>
+                <input [(ngModel)]="dataTableService.pageQuery.data.arptCode3" (ngModelChange)="dataTableService.pageQuery.data.arptCode3=$event.toString().toUpperCase()" enterSearch class="text-in g-5 sch-in" placeholder="三字码" />
+            </div>
+            <div class="g-2 text-left">
+                <span class="margin-r10">中文简称</span>
+                <input [(ngModel)]="dataTableService.pageQuery.data.arptBriefCh" enterSearch class="text-in g-5 sch-in" placeholder="中文简称" />
+            </div>
+            <div class="g-3 text-left">
+                <ui-selectbutton class="flex flex-center g-10" [styleClass]="'tab but-shad flex flex-center g-9'" [model]="dataTableService.commonEnum.airportAttrEnum.DATAS" [(selectValue)]="dataTableService.pageQuery.data.arptAttr" enterSearch></ui-selectbutton>
+            </div>
+        </div>
+        <div class="sch-area-button flex flex-right flex-align-c g-3">
+            <button class="but margin-l10" (click)="dataTableService.initPageQuery()">重置</button>
+            <button class="but but-yellow margin-l20" enterSearchEvent (enterSearch)="dataTableService.getDataList()" (click)="dataTableService.getDataList()">查询</button>
+        </div>
+    </div>
+    <div class="con-table-title">
+        <div class="flex flex-justify">
+            <div class="flex flex-left g-4">
+                <span class="font-title page-info">共查询到&nbsp;
+          <span class="font-title font-cyan">{{dataTableService.totalRecords?dataTableService.totalRecords:'0'}}</span> &nbsp;条记录&nbsp; &nbsp;共{{dataTableService.getPageTotal()}}页，每页显示 {{dataTableService.pageQuery.pageSize}} 条&nbsp;
+                </span>
+            </div>
+            <div class="flex flex-right g-6">
+                <button class="but opt-button opt-button-del margin-r10" *ngIf="dataTableService.dataMultiCheckService.checkedNumber>0&&dataTableService.permissionObj[dataTableService.commonEnum.permissionType.DELETE.value]" (click)="dataTableService.deleteMore()" title="删除">
+          <i></i>
+        </button>
+                <button class="but opt-button opt-button-add margin-r10" *ngIf="dataTableService.permissionObj[dataTableService.commonEnum.permissionType.ADD.value]" (click)="dataTableService.toAddPage()" title="新增">
+          <i></i>
+        </button>
+                <nz-pagination (nzPageIndexChange)="dataTableService.pageIndexChange($event)" [(nzPageIndex)]="dataTableService.pageQuery.pageNum" nzShowQuickJumper nzShowSizeChanger [nzTotal]="dataTableService.totalRecords" [nzPageSizeSelectorValues]="dataTableService.commonEnum.pageSizeSelectorValues.DATA"
+                    [(nzPageSize)]="dataTableService.pageQuery.pageSize" (nzPageSizeChange)="dataTableService.pageSizeChange($event)"></nz-pagination>
+            </div>
+        </div>
+    </div>
+    <div class="con-table">
+        <nz-table #nzTable [nzLoading]="dataTableService.loading&&dataTableService.loadlogo" [nzDataSource]="dataTableService.dataList" [nzIsPagination]="false" [nzSize]="'middle'">
+            <thead nz-thead>
+                <tr>
+                    <th nz-th nzCheckbox>
+                        <label nz-checkbox [(ngModel)]="dataTableService.dataMultiCheckService.allChecked" [nzIndeterminate]="dataTableService.dataMultiCheckService.indeterminate" (ngModelChange)="dataTableService.dataMultiCheckService.checkAll($event)"></label>
+                    </th>
+                    <th nz-th><span>操作</span></th>
+                    <th nz-th *ngFor="let tableField of dataTableService.showTableFields" [ngStyle]="tableField.style" [ngClass]="tableField.sortable?'sortable '+tableField.classTh:' '+tableField.classTh" (click)="dataTableService.thDataSort(tableField.field,false)">
+                        <span>{{tableField.header}}</span>
+                        <nz-table-sort *ngIf="tableField.sortable" [(nzValue)]="tableField.sortValue" (nzValueChange)="dataTableService.dataSort(tableField.field,false)"></nz-table-sort>
+                    </th>
+                </tr>
+            </thead>
+            <tbody nz-tbody>
+                <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+                    <td nz-td nzCheckbox>
+                        <label nz-checkbox [(ngModel)]="data.checked" (ngModelChange)="dataTableService.dataMultiCheckService.refreshStatus($event)">
+          </label>
+                    </td>
+                    <td class="table-opt-area-button">
+                        <i class="edit margin-r10" title="编辑" *ngIf="dataTableService.permissionObj[dataTableService.commonEnum.permissionType.UPDATE.value]" (click)="dataTableService.toEditPage(data)"></i>
+                        <i class="del margin-r10" title="删除" *ngIf="dataTableService.permissionObj[dataTableService.commonEnum.permissionType.DELETE.value]" (click)="dataTableService.deleteOne(data)"></i>
+                    </td>
+                    <td nz-td *ngFor="let tableField of dataTableService.showTableFields" [ngStyle]="tableField.style" [ngClass]="tableField.classTd">
+                        <span *ngIf="tableField.template">{{dataTableService.colTemplateFunction(tableField,data)}}</span>
+                        <span *ngIf="!tableField.template">{{data[tableField.field]}}</span>
+                    </td>
+
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+.ui-overlaypanel {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  /* zp-start */
+  width: 100%;
+  margin-top: 10px;
+  /* zp-end */
+}
+
+.ui-overlaypanel-content {
+  /* zp默认样式是padding: 0.5em 1em; */
+  padding: 0;
+}
+
+.ui-overlaypanel-close {
+  position: absolute;
+  top: -.5em;
+  right: -.5em;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+}

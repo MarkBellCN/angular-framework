@@ -1,0 +1,58 @@
+<div class="flex flex-align-c flex-justify g-9 margin-a margin-t20">
+    <span class="font-xxxl">{{title}}</span>
+    <div class="flex">
+        <button class="but margin-r20 but-mm" (click)="dataTableService.sidebarClose()">取消</button>
+        <button *ngIf="desc!='detail'" class="but but-yellow but-mm" [disabled]="formModel.invalid||!dataTableService.saveButton" (click)="dataTableService.save(formModel.value,desc)">确定
+    </button>
+    </div>
+</div>
+
+<div class="panel-cont margin-t10">
+    <form [formGroup]="formModel" class="relative">
+        <div *ngIf="desc=='detail'" class="sidebar-mask"></div>
+
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">类别
+                    <span *ngIf="formModel.hasError('required',['ciClassify'])" class="font-strong font-tip">*必填项</span>
+                </p>
+                <nz-select nzShowSearch nzAllowClear class="g-10 sch-in" [nzDisabled]="desc==dataTableService.commonEnum.descEnum.UPDATE.value" formControlName="ciClassify" nzPlaceHolder="违禁物品">
+                    <nz-option *ngFor="let item of dataTableService.commonEnum.ctclassifyEnum.INPUTDATAS" [nzLabel]="item.label" [nzValue]="item.value">
+                    </nz-option>
+                </nz-select>
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">编码
+                    <span *ngIf="formModel.hasError('required',['ciCode'])" class="font-strong font-tip">*必填项</span>
+                </p>
+                <input type="text" class="text-in g-10" formControlName="ciCode" [class.has-error]="!formModel.controls['ciCode'].valid&&formModel.controls['ciCode'].touched" placeholder="输入编码" maxlength="15" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">名称
+                    <span *ngIf="formModel.hasError('required',['ciName'])" class="font-strong font-tip">*必填项</span>
+                    <span *ngIf="formModel.hasError('uniqueValidators',['ciName'])" class="font-strong font-tip">名称已存在</span>
+                </p>
+                <input type="text" class="text-in g-10" formControlName="ciName"  [readonly]="desc==dataTableService.commonEnum.descEnum.UPDATE.value" [class.has-error]="!formModel.controls['ciName'].valid&&formModel.controls['ciName'].touched" placeholder="输入名称" maxlength="25" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">排序
+                    <span *ngIf="formModel.hasError('required',['ciOrdNo'])" class="font-strong font-tip">*必填项</span>
+                    <span *ngIf="formModel.hasError('pattern',['ciOrdNo'])" class="font-strong font-tip">只能输入3位数字字母</span>
+                </p>
+                <input type="text" class="text-in g-10" formControlName="ciOrdNo" [class.has-error]="!formModel.controls['ciOrdNo'].valid&&formModel.controls['ciOrdNo'].touched" placeholder="输入排序值" maxlength="3" />
+            </div>
+        </div>
+        <div class="flex g-9 textarea margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">备注</p>
+                <textarea class="g-10 text-in" [rows]="3" formControlName="ciRemark" maxlength="120"></textarea>
+            </div>
+        </div>
+    </form>
+</div>

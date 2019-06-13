@@ -1,0 +1,53 @@
+<div class="flex flex-align-c flex-justify g-9 margin-a margin-t20">
+    <span class="font-xxxl">{{title}}</span>
+    <div class="flex">
+        <button class="but margin-r20 but-mm" (click)="dataTableService.sidebarClose()">取消</button>
+        <button *ngIf="desc!='detail'" class="but but-yellow but-mm" [disabled]="formModel.invalid||!dataTableService.saveButton" (click)="save()">确定
+    </button>
+    </div>
+</div>
+<div class="panel-cont margin-t10">
+    <form [formGroup]="formModel" class="relative">
+        <div *ngIf="desc=='detail'" class="sidebar-mask"></div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">部门名称
+                    <span *ngIf="formModel.hasError('required',['dptName'])" class="font-strong font-tip">*必填项</span>
+                    <span *ngIf="formModel.hasError('uniqueValidators',['dptName'])" class="font-strong font-tip">部门名称已存在</span>
+                </p>
+                <input type="text" maxlength="15" class="text-in g-10" formControlName="dptName" [class.has-error]="!formModel.controls['dptName'].valid&&formModel.controls['dptName'].touched" placeholder="输入部门名称" [readonly]="desc==dataTableService.commonEnum.descEnum.UPDATE.value"
+                />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">部门类别</p>
+                <input type="text" maxlength="15" class="text-in g-10" formControlName="dptType" [class.has-error]="!formModel.controls['dptType'].valid&&formModel.controls['dptType'].touched" placeholder="输入部门类别" />
+            </div>
+        </div>
+        <div class="flex g-9 margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">部门电话</p>
+                <input type="text" maxlength="15" class="text-in g-10" formControlName="dptPhone" [class.has-error]="!formModel.controls['dptPhone'].valid&&formModel.controls['dptPhone'].touched" placeholder="输入部门电话" />
+            </div>
+        </div>
+        <div class="flex g-9 textarea margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10 relative">
+                <p class="font-gray font-left margin-b10">父级部门名称</p>
+                <input readonly type="text" class="text-in g-10 ui-no-readonly" [(ngModel)]="formModel.value.dptSuperior" formControlName="dptSuperior" (click)="op.toggle($event)" />
+                <button class="overlayPanel-clean" type="button" (click)="overlayPanelClean(op)">清空</button>
+                <ui-overlayPanel #op class="g-4-5">
+                    <input type="text" class="text-in g-10" placeholder="搜索资源" (keyup)="dataTreeService.keyUpSearch($event)">
+                    <nz-tree [ngModelNodes]="nodes" (nzClick)="treeSelect($event,op)" [nzDefaultExpandAll]="true" [nzDefaultExpandedKeys]="dataTreeService.expandKeysDefault" [nzDefaultSelectedKeys]="dataTreeService.selectedKeysDefault" [nzSearchValue]="dataTreeService.searchValue"
+                        [nzDefaultExpandAll]="dataTreeService.expandDefault"></nz-tree>
+                </ui-overlayPanel>
+            </div>
+        </div>
+        <div class="flex g-9 textarea margin-a margin-t30 flex-align-c flex-justify">
+            <div class="g-10">
+                <p class="font-gray font-left margin-b10">备注</p>
+                <textarea class="g-10 text-in" [rows]="3" formControlName="dptRemark" maxlength="120"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
