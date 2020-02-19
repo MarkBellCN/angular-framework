@@ -66,7 +66,7 @@
     "zone.js": "^0.8.19",
     "ngx-infinite-scroll": "^0.8.2",
     "@stackblitz/sdk": "^1.1.1",
-    "codecov": "^3.0.0",
+    "codecov": "^3.6.5",
     "@stomp/ng2-stompjs": "^0.6.4",
     "@types/jquery": "^3.3.0",
     "angular2-uuid": "^1.1.1",
