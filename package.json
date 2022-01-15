@@ -48,7 +48,7 @@
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",
     "karma-cli": "~1.0.1",
-    "marked": "^0.3.6",
+    "marked": "^4.0.10",
     "node-prismjs": "^0.1.1",
     "ngx-color": "^1.2.1",
     "prismjs": "^1.10.0",
