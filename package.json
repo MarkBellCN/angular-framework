@@ -14,7 +14,7 @@
   "dependencies": {
     "@angular/cdk": "^5.0.0",
     "date-fns": "^1.29.0",
-    "moment": "^2.18.1",
+    "moment": "^2.29.2",
     "tslib": "^1.7.1"
   },
   "devDependencies": {
@@ -82,6 +82,6 @@
     "@angular/common": "^5.0.0",
     "@angular/core": "^5.0.0",
     "@angular/forms": "^5.0.0",
-    "moment": "^2.18.1"
+    "moment": "^2.29.2"
   }
 }
